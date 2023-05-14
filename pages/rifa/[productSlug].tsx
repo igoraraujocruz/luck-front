@@ -66,6 +66,7 @@ export interface Produto {
   export interface Client {
     id: string
     name: string
+    socketId: string;
     numberPhone: string
     createdAt: string
     updatedAt: string
@@ -88,13 +89,15 @@ const validateFormSchema = yup.object().shape({
 });
   
 
-export default function Product({ produto }: Produto) {
+export default function Product() {
     const [selectedRifas, setSelectedRifas] = useState<Rifa[]>([])
     const [qrCode, setQrcode] = useState({} as any)
     const [loadingQRCODE, setLoadingQRCOde] = useState(false)
     const [product, setProduct] = useState({} as NewProduct)
     const [reloadPage, setReloadPage] = useState(false)
+    const [userSocketId, setUserSocketId] = useState('')
     const { query } = useRouter();
+    const socket = useContext(SocketContext);
 
     useEffect(() => {
       if(!query.productSlug) {
@@ -105,18 +108,27 @@ export default function Product({ produto }: Produto) {
       .then((response) => setProduct(response.data))
 
       socket.emit("room", query.productSlug);
-    } ,[reloadPage, query])
 
+    } ,[reloadPage, query, socket])
+
+
+    socket.on("mySocketId", data => {
+      setUserSocketId(data);
+    });
 
     const toast = useToast();
-    const { isOpen, onToggle } = useDisclosure()
-
-    const socket = useContext(SocketContext);
+    const { isOpen, onClose, onToggle } = useDisclosure()
 
     socket.on("updateRifas", () => {
       setReloadPage(!reloadPage)
-    }); 
-    
+    });    
+
+    socket.on("client:rifaPaid", () => {
+      setQrcode({})
+      setLoadingQRCOde(false)
+      setSelectedRifas([])
+      onClose()
+    });  
 
     const {
         register,
@@ -133,6 +145,7 @@ export default function Product({ produto }: Produto) {
             name: client.name,
             numberPhone: client.numberPhone,
             productId: product.id,
+            socketId: userSocketId,
             rifas: selectedRifas.map(newRifas => newRifas.id)
           })
     
