@@ -123,7 +123,7 @@ export default function Product() {
       setReloadPage(!reloadPage)
     });    
 
-    socket.on("client:rifaPaid", () => {
+    socket.on("client:reset", () => {
       setQrcode({})
       setLoadingQRCOde(false)
       setSelectedRifas([])
