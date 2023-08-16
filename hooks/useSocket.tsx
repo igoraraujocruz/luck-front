@@ -4,7 +4,7 @@ import { io, Socket } from 'socket.io-client';
 const baseUrl =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:3333'
-    : 'https://api.duckluckie.fun';
+    : process.env.NEXT_PUBLIC_API_URL;
 
 const socket = io(baseUrl);
 const SocketContext = createContext<Socket>(socket);
