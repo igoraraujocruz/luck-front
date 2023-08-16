@@ -1,12 +1,11 @@
 import React, { createContext } from 'react';
 import { io, Socket } from 'socket.io-client';
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const baseUrl =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:3333'
-    : apiUrl;
+    : 'https://playground-api-luck.1g0r.tech';
 
 const socket = io(baseUrl);
 const SocketContext = createContext<Socket>(socket);
