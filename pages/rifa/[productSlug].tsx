@@ -246,8 +246,8 @@ export default function Product() {
                                     '1fr 1fr 1fr 1fr',
                                     '1fr 1fr 1fr 1fr',
                                     '1fr 1fr 1fr 1fr 1fr',
-                                    '1fr 1fr 1fr 1fr 1fr 1fr 1fr',
-                                    '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
+                                    '1fr 1fr 1fr 1fr 1fr 1fr',
+                                    '1fr 1fr 1fr 1fr 1fr 1fr',
                                 ]}
                                 bg="bgItems"
                                 gap="1rem"
