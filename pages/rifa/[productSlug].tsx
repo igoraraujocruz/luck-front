@@ -227,7 +227,7 @@ export default function Product() {
                   <AspectRatio mt="1rem" w={['30rem', '30rem', '50rem']} ratio={2}>
                         <iframe
                           title='naruto'
-                          src='https://www.youtube.com/embed/QhBnZ6NPOY0'
+                          src='https://www.youtube.com/watch?v=rsZ5Oa9egrU'
                           allowFullScreen
                         />
                       </AspectRatio>
