@@ -209,7 +209,6 @@ export default function Product() {
         onToggle()
       }
 
-      //selectedRifas.includes(rifa) ? 'red' : 'green' 
     return (
         <>
             <Head>
@@ -220,11 +219,10 @@ export default function Product() {
             <Flex mt='2rem' flexDir={['column', 'column', 'row']}>
                 <VStack w={'100%'} h="100%">
                 <VStack  justify={'center'} w={['30rem', '30rem', '50rem']}>
-                                <Text fontSize={'2rem'}>{product.name}</Text>
-                                <Text fontSize={'1rem'}>{product.description}</Text>
+                                <Text fontSize={'2rem'} w={'30rem'} h={'4rem'} overflowY={'auto'}>{product.name}</Text>
+                                <Text fontSize={'1rem'} w={'30rem'} h={'10rem'} overflowY={'auto'}>{product.description}</Text>
                             </VStack>
-                  {/* <Image src={produto.imgSrc} alt={produto.name} w={['30rem', '30rem', '50rem']} /> */}
-                  <AspectRatio mt="1rem" w={['30rem', '30rem', '50rem']} ratio={2}>
+                  <AspectRatio mt="1rem" w={['25rem', '25rem', '30rem']} ratio={2}>
                         <iframe
                           title='naruto'
                           src='https://www.youtube.com/watch?v=rsZ5Oa9egrU'
@@ -248,8 +246,8 @@ export default function Product() {
                                     '1fr 1fr 1fr 1fr',
                                     '1fr 1fr 1fr 1fr',
                                     '1fr 1fr 1fr 1fr 1fr',
-                                    '1fr 1fr 1fr 1fr 1fr 1fr 1fr',
-                                    '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
+                                    '1fr 1fr 1fr 1fr 1fr 1fr',
+                                    '1fr 1fr 1fr 1fr 1fr 1fr',
                                 ]}
                                 bg="bgItems"
                                 gap="1rem"
