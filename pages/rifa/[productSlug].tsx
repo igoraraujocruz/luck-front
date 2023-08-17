@@ -224,10 +224,12 @@ export default function Product() {
                             </VStack>
                   <AspectRatio mt="1rem" w={['25rem', '25rem', '30rem']} ratio={2}>
                         <iframe
-                          title='naruto'
-                          src='https://www.youtube.com/watch?v=rsZ5Oa9egrU'
+                          title='chocolate'
+                          src='https://www.youtube.com/embed/rsZ5Oa9egrU'
                           allowFullScreen
+                          allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         />
+
                       </AspectRatio>
                 </VStack>
                 <Flex w={'100%'} h={["146rem", "146rem", "75rem"]} justify={'center'}>
