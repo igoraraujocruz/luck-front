@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Button, Flex, Grid, Heading, Image, ScaleFade, Spinner, Text, VStack, useDisclosure, useToast } from "@chakra-ui/react"
+import { AspectRatio, Box, Button, Flex, Grid, Heading, Image, Img, ScaleFade, Spinner, Text, VStack, useDisclosure, useToast } from "@chakra-ui/react"
 import axios from "axios";
 import { GetServerSideProps } from "next"
 import Head from "next/head";
@@ -216,64 +216,66 @@ export default function Product() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Flex mt='2rem' flexDir={['column', 'column', 'row']}>
-                <VStack w={'100%'} h="100%">
-                <VStack  justify={'center'} w={['30rem', '30rem', '50rem']}>
-                                <Text fontSize={'2rem'} w={'30rem'} h={'4rem'} overflowY={'auto'}>{product.name}</Text>
-                                <Text fontSize={'1rem'} w={'30rem'} h={'10rem'} overflowY={'auto'}>{product.description}</Text>
+            <Flex  flexDir={['column', 'column', 'row']}>
+                <VStack w={['100%', '100%', '300rem']} h="100%">
+                <VStack justify={'center'} p={[0,0,'2rem','2rem', 0]} w={'100%'} pos={'relative'} align={['center', 'center', 'start', 'center']} h={['40vh', '40vh', '100vh']}>
+                               <Img src="choco2.jpg" opacity={0.4} alt="imagemChocolate"  w={'100%'} h={'100%'} left={0} top={0} pos={'absolute'} />
+                                <VStack pos={'relative'}>
+                                  <VStack bg='#300E02' align={'start'} w={['20rem', '20rem', '20rem', '30rem']} borderRadius={'0.5rem'} p={'2rem'} mt={['3rem', '3rem', 0]}>
+                                    <Text  fontSize={['2rem']}  overflowY={'auto'}>{product.name}</Text>
+                                    <Text>Como participar:</Text>
+                                    <Text>1º Selecione seus números.</Text>
+                                    <Text>2º Clique em no botão Continuar.</Text>
+                                    <Text>3º Insira seus dados.</Text>
+                                    <Text>4º Clique em comprar, e pronto!</Text> 
+                                    <Text>Seu número estará reservado até a data do sorteio.</Text>
+                                  </VStack>
+                                </VStack> 
                             </VStack>
-                  <AspectRatio mt="1rem" w={['25rem', '25rem', '30rem']} ratio={2}>
-                        <iframe
-                          title='chocolate'
-                          src='https://www.youtube.com/embed/rsZ5Oa9egrU'
-                          allowFullScreen
-                          allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        />
-
-                      </AspectRatio>
                 </VStack>
-                <Flex w={'100%'} h={["146rem", "146rem", "75rem"]} justify={'center'}>
+                <Flex w={['100%', '100%', '150rem']} p='2rem' justify={'center'}>
                     {!isOpen ? (
-                        <Flex p="1rem" flexDir={'column'} align={'center'}>
+                        <Flex justify={'center'}  flexDir={'column'} align={'center'}>
                             
                             
-                            <Text fontSize={'2rem'}>É muito fácil participar</Text>
-                            <Text>1º Selecione suas rifas</Text>
-                            <Text>2º Clique em comprar</Text>
+                            
                             {product.rifas?.length > 0 ? (
                                 <Flex flexDir={'column'} justify={'center'} align={'center'}>
                                 <Grid
-                                mt="2rem"
+                                mt={['5rem', '5rem', 0]}
+                          
                                 templateColumns={[
-                                    '1fr 1fr 1fr 1fr',
-                                    '1fr 1fr 1fr 1fr',
+                                    '1fr 1fr 1fr 1fr 1fr 1fr 1fr',
+                                    '1fr 1fr 1fr 1fr 1fr 1fr 1fr',
                                     '1fr 1fr 1fr 1fr 1fr',
-                                    '1fr 1fr 1fr 1fr 1fr 1fr',
-                                    '1fr 1fr 1fr 1fr 1fr 1fr',
+                                    '1fr 1fr 1fr 1fr 1fr 1fr 1fr',
+                                    '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
+                                    '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
                                 ]}
-                                bg="bgItems"
-                                gap="1rem"
+                      
+                                gap="0.5rem"
                                 >
                                     {product.rifas.sort((a, b) => a.number - b.number).map(rifa => (
                                         <Flex onClick={() => rifa.client[0]?.id.length > 0 ? rifaJaComprada() : handleSelectRifas(rifa)} cursor={rifa.client[0]?.id.length > 0 ? 'default' : 'pointer'} borderRadius={'1rem'} _hover={{
-                                            bg: rifa.isPaid === true ? '#778899' : rifa.client[0]?.id.length > 0 ? '#ff8c00' : selectedRifas.includes(rifa) ? '#8b0000' : '#006400'
+                                            bg: rifa.isPaid === true ? '#778899' : '#300E02',
+                                            color: rifa.client[0]?.id.length > 0 ? '#300E02' : '#fff'
                                             
-                                        }} w='4rem' h="4rem" bg={rifa.isPaid === true ? '#778899' : rifa.client[0]?.id.length > 0 ? '#ff8c00' : selectedRifas.includes(rifa) ? '#8b0000' : '#006400'} justify={'center'} align={'center'} key={rifa.id}>{rifa.number}</Flex>
+                                        }} w={['3rem', '3rem', '3rem', '3rem', '4rem']} h={['3rem', '3rem', '3rem','3rem', '4rem']} bg={rifa.isPaid === true ? '#778899' : rifa.client[0]?.id.length > 0 ? '#300E02' : selectedRifas.includes(rifa) ? '#300E02' : '#f6eccf'} justify={'center'} fontWeight={700} color={selectedRifas.includes(rifa) ? '#fff' : '#300E02'} align={'center'} key={rifa.id}>{rifa.number}</Flex>
                                         ))} 
                                 </Grid>
                         
                                 <Button
                                 mt="2rem"
                                 p='2rem'
-                                w='28rem'
+                                w={['28rem', '28rem', '15rem',]}
                                 type="button"
-                                bg="#FF6B00"
-                                _hover={{ bg: '#FF4500' }}
-                                color="white"
+                                bg="#f6eccf"
+                                _hover={{ bg: '#5d2e27', color: '#fff' }}
+                                color="#5d2e27"
                                 size="lg"
                                 onClick={verifyRifas}
                             >
-                                Comprar
+                                Continuar
                             </Button>
                         </Flex>
                       ): <Spinner size={'lg'} /> 
@@ -285,18 +287,21 @@ export default function Product() {
                     
                     {!loadingQRCODE ?
                             <Flex flexDir={'column'} justify={'center'} align={'center'}>
-                              <Text>3º Coloque seus dados</Text>
-                              <Text>4º Clique em comprar</Text>                    
+                             
                               <Flex mt="2rem" flexDir={'column'} as="form" onSubmit={handleSubmit(sendRifasForApi)}
                               >
                                 <Input
-                                  color="#fff"
+                                  color="#5d2e27"
+                                  fontWeight={600}
+                                  bg="#f6eccf"
                                   label="Nome"
                                   error={errors.name}
                                   {...register('name')}
                                 />
                                 <MaskedInput
-                                  color="#fff"
+                                  bg="#f6eccf"
+                                  fontWeight={600}
+                                  color="#5d2e27"
                                   label="Celular"
                                   mask={[
                                     '(',
@@ -323,9 +328,9 @@ export default function Product() {
                                       p='2rem'
                                       w='30rem'
                                       type="submit"
-                                      bg="#FF6B00"
-                                      _hover={{ bg: '#FF4500' }}
-                                      color="white"
+                                      bg="#f6eccf"
+                                      _hover={{ bg: '#5d2e27', color: '#fff' }}
+                                      color="#5d2e27"
                                       size="lg"
                                     >
                                       Comprar

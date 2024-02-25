@@ -42,15 +42,18 @@ import {
         )}
         <MaskedChakraInput
           as={ReactMaskedInput}
+          _focus={{ 
+            bg: '#f6eccf'
+           }}
           border={'0'}
           guide={false}
           mask={mask}
           name={name}
           id={name}
-          bgColor="black"
+          bg={bg}
           variant="filled"
           _hover={{
-            bgColor: 'inputBg',
+            bgColor: '#f6eccf',
           }}
           size="lg"
           ref={data => {

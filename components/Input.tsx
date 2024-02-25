@@ -46,16 +46,16 @@ import {
           )}
           <ChakraInput
             _focus={{ 
-              bg: 'transparent'
+              bg: '#f6eccf'
              }}
 
             name={name}
             id={name}
             border="0"
-            bg={'black'}
+            bg={bg}
             variant="filled"
             _hover={{
-              bgColor: 'inputBg',
+              bgColor: '#f6eccf'
             }}
             size="lg"
             {...rest}
