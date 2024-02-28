@@ -218,8 +218,7 @@ export default function Product() {
             </Head>
             <Flex  flexDir={['column', 'column', 'row']}>
                 <VStack w={['100%', '100%', '300rem']} h="100%">
-                <VStack justify={'center'} p={[0,0,'2rem','2rem', 0]} w={'100%'} pos={'relative'} align={['center', 'center', 'start', 'center']} h={['40vh', '40vh', '100vh']}>
-                               {/* <Img src="choco2.jpg" opacity={0.4} alt="imagemChocolate"  w={'100%'} h={'100%'} bgRepeat={'repeat-y'} left={0} top={0} pos={'absolute'} /> */}
+                <VStack justify={'center'} p={['10rem', '10rem', 0]} w={'100%'} align={['center', 'center', 'start', 'center']} h={['40vh', '40vh', '100vh']}>
                                 <VStack pos={'relative'}>
                                   <VStack bg='#300E02' align={'start'} w={['20rem', '20rem', '20rem', '30rem']} borderRadius={'0.5rem'} p={'2rem'} mt={['3rem', '3rem', 0]}>
                                     <Text  fontSize={['2rem']}  overflowY={'auto'}>{product.name}</Text>
@@ -269,7 +268,7 @@ export default function Product() {
                                 <Button
                                 mt="2rem"
                                 p='2rem'
-                                w={['22rem', '22rem', '15rem',]}
+                                w={['22rem', '22rem', '25rem']}
                                 type="button"
                                 bg="#f6eccf"
                                 _hover={{ bg: '#5d2e27', color: '#fff' }}
@@ -285,16 +284,17 @@ export default function Product() {
                   </Flex>
                     ) : 
                     <ScaleFade initialScale={0.9} in={isOpen}>
-                    <Flex h="100vh" mt='2rem' p="1rem" flexDir={'column'} align={'center'}>
+                    <Flex h="100%" p="1rem" flexDir={'column'} justify={'center'} align={'center'}>
                     
                     {!loadingQRCODE ?
-                            <Flex flexDir={'column'} justify={'center'} align={'center'}>
+                            <Flex   flexDir={'column'} justify={'center'} align={'center'}>
                              
-                              <Flex mt="2rem" flexDir={'column'} as="form" onSubmit={handleSubmit(sendRifasForApi)}
+                              <Flex flexDir={'column'} as="form" onSubmit={handleSubmit(sendRifasForApi)}
                               >
                                 <Input
                                   color="#5d2e27"
                                   fontWeight={600}
+                                  w={['22rem', '22rem', '25rem']}
                                   bg="#f6eccf"
                                   label="Nome"
                                   error={errors.name}
@@ -303,6 +303,7 @@ export default function Product() {
                                 <MaskedInput
                                   bg="#f6eccf"
                                   fontWeight={600}
+                                  w={['22rem', '22rem', '25rem']}
                                   color="#5d2e27"
                                   label="Celular"
                                   mask={[
@@ -328,7 +329,7 @@ export default function Product() {
                                   <Button
                                       mt="2rem"
                                       p='2rem'
-                                      w='30rem'
+                                      w={['22rem', '22rem', '25rem']}
                                       type="submit"
                                       bg="#f6eccf"
                                       _hover={{ bg: '#5d2e27', color: '#fff' }}
