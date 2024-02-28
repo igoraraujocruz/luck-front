@@ -219,7 +219,7 @@ export default function Product() {
             <Flex  flexDir={['column', 'column', 'row']}>
                 <VStack w={['100%', '100%', '300rem']} h="100%">
                 <VStack justify={'center'} p={[0,0,'2rem','2rem', 0]} w={'100%'} pos={'relative'} align={['center', 'center', 'start', 'center']} h={['40vh', '40vh', '100vh']}>
-                               <Img src="choco2.jpg" opacity={0.4} alt="imagemChocolate"  w={'100%'} h={'100%'} left={0} top={0} pos={'absolute'} />
+                               {/* <Img src="choco2.jpg" opacity={0.4} alt="imagemChocolate"  w={'100%'} h={'100%'} bgRepeat={'repeat-y'} left={0} top={0} pos={'absolute'} /> */}
                                 <VStack pos={'relative'}>
                                   <VStack bg='#300E02' align={'start'} w={['20rem', '20rem', '20rem', '30rem']} borderRadius={'0.5rem'} p={'2rem'} mt={['3rem', '3rem', 0]}>
                                     <Text  fontSize={['2rem']}  overflowY={'auto'}>{product.name}</Text>
@@ -230,7 +230,9 @@ export default function Product() {
                                     <Text>4º Clique em comprar, e pronto!</Text> 
                                     <Text>Seu número estará reservado até a data do sorteio.</Text>
                                   </VStack>
+                                  <Img src="egg.png" alt="imagemChocolate" pos={'absolute'} top={['21rem', '21rem', '18rem', '16rem']} left={['18rem', '18rem', '17rem', '27rem' ]}  w={['3rem', '3rem', '5rem']} h={['3rem', '3rem', '5rem']} />
                                 </VStack> 
+                               
                             </VStack>
                 </VStack>
                 <Flex w={['100%', '100%', '150rem']} p='2rem' justify={'center'}>
@@ -245,8 +247,8 @@ export default function Product() {
                                 mt={['5rem', '5rem', 0]}
                           
                                 templateColumns={[
-                                    '1fr 1fr 1fr 1fr 1fr 1fr 1fr',
-                                    '1fr 1fr 1fr 1fr 1fr 1fr 1fr',
+                                    '1fr 1fr 1fr 1fr 1fr 1fr',
+                                    '1fr 1fr 1fr 1fr 1fr 1fr',
                                     '1fr 1fr 1fr 1fr 1fr',
                                     '1fr 1fr 1fr 1fr 1fr 1fr 1fr',
                                     '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
@@ -267,7 +269,7 @@ export default function Product() {
                                 <Button
                                 mt="2rem"
                                 p='2rem'
-                                w={['28rem', '28rem', '15rem',]}
+                                w={['22rem', '22rem', '15rem',]}
                                 type="button"
                                 bg="#f6eccf"
                                 _hover={{ bg: '#5d2e27', color: '#fff' }}
