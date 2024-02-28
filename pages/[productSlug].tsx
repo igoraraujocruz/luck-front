@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Button, Flex, Grid, Heading, Image, Img, ScaleFade, Spinner, Text, VStack, useDisclosure, useToast } from "@chakra-ui/react"
+import { AspectRatio, Box, Button, Flex, Grid, Heading, Image, Img, ListItem, ScaleFade, Spinner, Text, UnorderedList, VStack, useDisclosure, useToast } from "@chakra-ui/react"
 import axios from "axios";
 import { GetServerSideProps } from "next"
 import Head from "next/head";
@@ -217,34 +217,41 @@ export default function Product() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Flex  flexDir={['column', 'column', 'row']}>
-                <VStack w={['100%', '100%', '300rem']} h="100%">
-                <VStack justify={'center'} p={['10rem', '10rem', 0]} w={'100%'} align={['center', 'center', 'start', 'center']} h={['40vh', '40vh', '100vh']}>
-                                <VStack pos={'relative'}>
-                                  <VStack bg='#300E02' align={'start'} w={['20rem', '20rem', '20rem', '30rem']} borderRadius={'0.5rem'} p={'2rem'} mt={['3rem', '3rem', 0]}>
-                                    <Text  fontSize={['2rem']}  overflowY={'auto'}>{product.name}</Text>
-                                    <Text>Como participar:</Text>
-                                    <Text>1º Selecione seus números.</Text>
-                                    <Text>2º Clique em no botão Continuar.</Text>
-                                    <Text>3º Insira seus dados.</Text>
-                                    <Text>4º Clique em comprar, e pronto!</Text> 
-                                    <Text>Seu número estará reservado até a data do sorteio.</Text>
-                                  </VStack>
-                                  <Img src="egg.png" alt="imagemChocolate" pos={'absolute'} top={['21rem', '21rem', '18rem', '16rem']} left={['18rem', '18rem', '17rem', '27rem' ]}  w={['3rem', '3rem', '5rem']} h={['3rem', '3rem', '5rem']} />
-                                </VStack> 
+                <VStack ml={['0rem', '0rem', '4rem']} justify={'center'} mt={['15rem', '15rem', '8.5rem']} p={['10rem', '10rem', 0]} w={'100%'} align={['center', 'center', 'start', 'center']} h={['40vh', '40vh', '100vh']}>
+                    <VStack bg='#300E02' align={'start'} w={['20rem', '20rem', '20rem', '30rem']} borderRadius={'0.5rem'} p={'2rem'} mt={['3rem', '3rem', 0]}>
+                      <Text  fontSize={['2rem']}  overflowY={'auto'}>Regulamento</Text>
+                      <UnorderedList>
+                        <ListItem>O vencedor será os últimos 2 dígitos do 1º sorteio da loteria federal do dia 27/03/2024.</ListItem>
+                        <Text fontSize={'0.8rem'} fontStyle={'italic'}>Caso não exista um vencedor no 1º sorteio, será utilizado os 2 últimos dígitos do 2º sorteito, e assim por diante...</Text>
+                        <ListItem mt={'1rem'}>O local da entrega será somente em Vitória/ES, a combinar.</ListItem>
+                        <ListItem mt={'1rem'}>A entrega deverá ser feita até o dia 29/03/2024</ListItem>
+                      </UnorderedList>
+                    </VStack>
+                    <VStack bg='#300E02' align={'start'} w={['20rem', '20rem', '20rem', '30rem']} borderRadius={'0.5rem'} p={'2rem'} mt={['3rem', '3rem', 0]}>
+                      <Text  fontSize={['2rem']}  overflowY={'auto'}>{product.name}</Text>
+                      <Text>Como participar:</Text>
+                      <Text>1º Selecione seus números.</Text>
+                      <Text>2º Clique no botão Continuar.</Text>
+                      <Text>3º Insira seus dados.</Text>
+                      <Text>4º Clique em comprar, e pronto!</Text> 
+                      <Text>Seu número estará reservado até a data do sorteio.</Text>
+                    </VStack>
+                    <Flex gap={3}>
+                    <Img src="egg.png" alt="imagemChocolate" top={['21rem', '21rem', '18rem', '16rem']} left={['18rem', '18rem', '17rem', '27rem' ]}  w={['3rem', '3rem', '5rem']} h={['3rem', '3rem', '5rem']} />
+                    <Img src="egg.png" alt="imagemChocolate" top={['21rem', '21rem', '18rem', '16rem']} left={['18rem', '18rem', '17rem', '27rem' ]}  w={['3rem', '3rem', '5rem']} h={['3rem', '3rem', '5rem']} />
+                    <Img src="egg.png" alt="imagemChocolate" top={['21rem', '21rem', '18rem', '16rem']} left={['18rem', '18rem', '17rem', '27rem' ]}  w={['3rem', '3rem', '5rem']} h={['3rem', '3rem', '5rem']} />
+                    </Flex>
+                    
+                </VStack> 
                                
-                            </VStack>
-                </VStack>
-                <Flex w={['100%', '100%', '150rem']} p='2rem' justify={'center'}>
+                      
+                <Flex mt={["17rem", "17rem", '2.3rem', '5rem']} w={['100%', '100%', '50rem', '150rem', '150rem']} justify={'center'}>
                     {!isOpen ? (
                         <Flex justify={'center'}  flexDir={'column'} align={'center'}>
-                            
-                            
-                            
+                          
                             {product.rifas?.length > 0 ? (
                                 <Flex flexDir={'column'} justify={'center'} align={'center'}>
-                                <Grid
-                                mt={['5rem', '5rem', 0]}
-                          
+                                <Grid             
                                 templateColumns={[
                                     '1fr 1fr 1fr 1fr 1fr 1fr',
                                     '1fr 1fr 1fr 1fr 1fr 1fr',
@@ -267,6 +274,7 @@ export default function Product() {
                         
                                 <Button
                                 mt="2rem"
+                                mb="1rem"
                                 p='2rem'
                                 w={['22rem', '22rem', '25rem']}
                                 type="button"
@@ -329,7 +337,7 @@ export default function Product() {
                                   <Button
                                       mt="2rem"
                                       p='2rem'
-                                      w={['22rem', '22rem', '25rem']}
+                                      w={['20rem', '20rem', '25rem']}
                                       type="submit"
                                       bg="#f6eccf"
                                       _hover={{ bg: '#5d2e27', color: '#fff' }}
@@ -347,7 +355,6 @@ export default function Product() {
           
                                   <ScaleFade initialScale={0.9} in={isOpen}>
                                     <Flex flexDir={'column'} justify={'center'} align={'center'}>
-                                      <Text>Pronto!!!</Text>
                                       <Text w={['15rem', '15rem', '25rem']}>No seu aplicativo do banco, selecione a opção de PIX QRCODE, aponte a camera do celular para o QRCODE e conclua o pagamento.</Text>
                                       <Image mt="2rem" alt='qrcode' src={qrCode.imagemQrcode} width={'12rem'}/>   
                                       <Text mt='2rem'>ou</Text>
@@ -372,6 +379,7 @@ export default function Product() {
                                     >
                                       Copiar
                                     </Button>
+                                    <Text mt='1rem' w={['15rem', '15rem', '25rem']}>Assim que concluir o pagamento, seu(s) número(s) será reservado e mudará de cor no nosso sistema.</Text>
                                   </Flex>   
                                 </ScaleFade>
                                 } 
