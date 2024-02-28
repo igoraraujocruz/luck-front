@@ -219,7 +219,7 @@ export default function Product() {
 
 
             <Flex flexDir={['column', 'column', 'row']} gap={'3rem'} align={['center', 'center', 'start']} p={'5rem'}>
-              <VStack bg={'red'} w={'50%'}>
+              <VStack w={'50%'}>
                 <VStack bg='#300E02' align={'start'} w={['20rem', '20rem', '20rem', '30rem']} borderRadius={'0.5rem'} p={'2rem'}>
                   <Text  fontSize={['1.5rem']}  overflowY={'auto'}>Regulamento</Text>
                   <UnorderedList>
@@ -240,7 +240,7 @@ export default function Product() {
                 </VStack>
                 <Img src="egg.png" alt="imagemChocolate" pos={'relative'} top={['-2.5rem', '-2.5rem', '-2.5rem', '-2.5rem']} left={['10rem', '10rem', '9rem', '14.5rem']} w={['3rem', '3rem', '3rem', '3rem', '5rem']} h={['3rem', '3rem', '3rem', '3rem', '5rem']} />
               </VStack>
-              <VStack bg={'blue'} w={'50%'}>
+              <VStack w={'50%'}>
                 
               {!isOpen ? (
                         <Flex justify={'center'}  flexDir={'column'} align={'center'}>
