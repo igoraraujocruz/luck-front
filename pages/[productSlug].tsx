@@ -217,7 +217,7 @@ export default function Product() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Flex  flexDir={['column', 'column', 'row']}>
-                <VStack ml={['0rem', '0rem', '4rem']} justify={'center'} mt={['15rem', '15rem', '8.5rem']} p={['10rem', '10rem', 0]} w={'100%'} align={['center', 'center', 'start', 'center']} h={['40vh', '40vh', '100vh']}>
+                <VStack ml={['0rem', '0rem', '4rem']} justify={'center'} mt={['15rem', '15rem', '8.5rem']} p={['10rem', '10rem', 0]} align={['center', 'center', 'start', 'center']} h={['40vh', '40vh', '100vh']}>
                     <VStack bg='#300E02' align={'start'} w={['20rem', '20rem', '20rem', '30rem']} borderRadius={'0.5rem'} p={'2rem'} mt={['3rem', '3rem', 0]}>
                       <Text  fontSize={['2rem']}  overflowY={'auto'}>Regulamento</Text>
                       <UnorderedList>
@@ -236,7 +236,7 @@ export default function Product() {
                       <Text>4º Clique em comprar, e pronto!</Text> 
                       <Text>Seu número estará reservado até a data do sorteio.</Text>
                     </VStack>
-                    <Flex gap={3}>
+                    <Flex gap={3} w={'100%'} justify={'center'}>
                     <Img src="egg.png" alt="imagemChocolate" top={['21rem', '21rem', '18rem', '16rem']} left={['18rem', '18rem', '17rem', '27rem' ]}  w={['3rem', '3rem', '5rem']} h={['3rem', '3rem', '5rem']} />
                     <Img src="egg.png" alt="imagemChocolate" top={['21rem', '21rem', '18rem', '16rem']} left={['18rem', '18rem', '17rem', '27rem' ]}  w={['3rem', '3rem', '5rem']} h={['3rem', '3rem', '5rem']} />
                     <Img src="egg.png" alt="imagemChocolate" top={['21rem', '21rem', '18rem', '16rem']} left={['18rem', '18rem', '17rem', '27rem' ]}  w={['3rem', '3rem', '5rem']} h={['3rem', '3rem', '5rem']} />
@@ -379,7 +379,7 @@ export default function Product() {
                                     >
                                       Copiar
                                     </Button>
-                                    <Text mt='1rem' w={['15rem', '15rem', '25rem']}>Assim que concluir o pagamento, seu(s) número(s) será reservado e mudará de cor no nosso sistema.</Text>
+                                    <Text mt='1rem' w={['15rem', '15rem', '25rem']}>Assim que concluir o pagamento, os números selecionados serão reservados e mudarão de cor no nosso sistema.</Text>
                                   </Flex>   
                                 </ScaleFade>
                                 } 
