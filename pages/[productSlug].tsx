@@ -216,37 +216,33 @@ export default function Product() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Flex  flexDir={['column', 'column', 'row']}>
-                <VStack ml={['0rem', '0rem', '4rem']} justify={'center'} mt={['15rem', '15rem', '8.5rem']} p={['10rem', '10rem', 0]} align={['center', 'center', 'start', 'center']} h={['40vh', '40vh', '100vh']}>
-                    <VStack bg='#300E02' align={'start'} w={['20rem', '20rem', '20rem', '30rem']} borderRadius={'0.5rem'} p={'2rem'} mt={['3rem', '3rem', 0]}>
-                      <Text  fontSize={['2rem']}  overflowY={'auto'}>Regulamento</Text>
-                      <UnorderedList>
-                        <ListItem>O vencedor será os últimos 2 dígitos do 1º sorteio da loteria federal do dia 27/03/2024.</ListItem>
-                        <Text fontSize={'0.8rem'} fontStyle={'italic'}>Caso não exista um vencedor no 1º sorteio, será utilizado os 2 últimos dígitos do 2º sorteito, e assim por diante...</Text>
-                        <ListItem mt={'1rem'}>O local da entrega será somente em Vitória/ES, a combinar.</ListItem>
-                        <ListItem mt={'1rem'}>A entrega deverá ser feita até o dia 29/03/2024</ListItem>
-                      </UnorderedList>
-                    </VStack>
-                    <VStack bg='#300E02' align={'start'} w={['20rem', '20rem', '20rem', '30rem']} borderRadius={'0.5rem'} p={'2rem'} mt={['3rem', '3rem', 0]}>
-                      <Text  fontSize={['2rem']}  overflowY={'auto'}>{product.name}</Text>
-                      <Text>Como participar:</Text>
-                      <Text>1º Selecione seus números.</Text>
-                      <Text>2º Clique no botão Continuar.</Text>
-                      <Text>3º Insira seus dados.</Text>
-                      <Text>4º Clique em comprar, e pronto!</Text> 
-                      <Text>Seu número estará reservado até a data do sorteio.</Text>
-                    </VStack>
-                    <Flex gap={3} w={'100%'} justify={'center'}>
-                    <Img src="egg.png" alt="imagemChocolate" top={['21rem', '21rem', '18rem', '16rem']} left={['18rem', '18rem', '17rem', '27rem' ]}  w={['3rem', '3rem', '5rem']} h={['3rem', '3rem', '5rem']} />
-                    <Img src="egg.png" alt="imagemChocolate" top={['21rem', '21rem', '18rem', '16rem']} left={['18rem', '18rem', '17rem', '27rem' ]}  w={['3rem', '3rem', '5rem']} h={['3rem', '3rem', '5rem']} />
-                    <Img src="egg.png" alt="imagemChocolate" top={['21rem', '21rem', '18rem', '16rem']} left={['18rem', '18rem', '17rem', '27rem' ]}  w={['3rem', '3rem', '5rem']} h={['3rem', '3rem', '5rem']} />
-                    </Flex>
-                    
-                </VStack> 
-                               
-                      
-                <Flex mt={["17rem", "17rem", '2.3rem', '5rem']} w={['100%', '100%', '50rem', '150rem', '150rem']} justify={'center'}>
-                    {!isOpen ? (
+
+
+            <Flex flexDir={['column', 'column', 'row']} gap={'3rem'} align={['center', 'center', 'start']} p={'5rem'}>
+              <VStack bg={'red'} w={'50%'}>
+                <VStack bg='#300E02' align={'start'} w={['20rem', '20rem', '20rem', '30rem']} borderRadius={'0.5rem'} p={'2rem'}>
+                  <Text  fontSize={['1.5rem']}  overflowY={'auto'}>Regulamento</Text>
+                  <UnorderedList>
+                    <ListItem>O vencedor será os últimos 2 dígitos do 1º sorteio da loteria federal do dia 27/03/2024.</ListItem>
+                    <Text fontSize={'0.8rem'} fontStyle={'italic'}>Caso não exista um vencedor no 1º sorteio, será utilizado os 2 últimos dígitos do 2º sorteito, e assim por diante...</Text>
+                    <ListItem mt={'1rem'}>O local da entrega será somente em Vitória/ES, a combinar.</ListItem>
+                    <ListItem mt={'1rem'}>A entrega deverá ser feita até o dia 29/03/2024</ListItem>
+                  </UnorderedList>
+                </VStack>
+                <VStack bg='#300E02' align={'start'} w={['20rem', '20rem', '20rem', '30rem']} borderRadius={'0.5rem'} p={'2rem'}>
+                  <Text  fontSize={['1.5rem']}  overflowY={'auto'}>{product.name}</Text>
+                  <Text>Como participar:</Text>
+                  <Text>1º Selecione seus números.</Text>
+                  <Text>2º Clique no botão Continuar.</Text>
+                  <Text>3º Insira seus dados.</Text>
+                  <Text>4º Clique em comprar, e pronto!</Text> 
+                  <Text>Seu número estará reservado até a data do sorteio.</Text>
+                </VStack>
+                <Img src="egg.png" alt="imagemChocolate" pos={'relative'} top={['-2.5rem', '-2.5rem', '-2.5rem', '-2.5rem']} left={['10rem', '10rem', '9rem', '14.5rem']} w={['3rem', '3rem', '3rem', '3rem', '5rem']} h={['3rem', '3rem', '3rem', '3rem', '5rem']} />
+              </VStack>
+              <VStack bg={'blue'} w={'50%'}>
+                
+              {!isOpen ? (
                         <Flex justify={'center'}  flexDir={'column'} align={'center'}>
                           
                             {product.rifas?.length > 0 ? (
@@ -255,7 +251,7 @@ export default function Product() {
                                 templateColumns={[
                                     '1fr 1fr 1fr 1fr 1fr 1fr',
                                     '1fr 1fr 1fr 1fr 1fr 1fr',
-                                    '1fr 1fr 1fr 1fr 1fr',
+                                    '1fr 1fr 1fr 1fr 1fr 1f',
                                     '1fr 1fr 1fr 1fr 1fr 1fr 1fr',
                                     '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
                                     '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
@@ -264,7 +260,7 @@ export default function Product() {
                                 gap="0.5rem"
                                 >
                                     {product.rifas.sort((a, b) => a.number - b.number).map(rifa => (
-                                        <Flex onClick={() => rifa.client[0]?.id.length > 0 ? rifaJaComprada() : handleSelectRifas(rifa)} cursor={rifa.client[0]?.id.length > 0 ? 'default' : 'pointer'} borderRadius={'1rem'} _hover={{
+                                        <Flex onClick={() => rifa.client[0]?.id.length > 0 ? rifaJaComprada() : handleSelectRifas(rifa)} cursor={rifa.client[0]?.id.length > 0 ? 'default' : 'pointer'} borderRadius={'0.5rem'} _hover={{
                                             bg: rifa.isPaid === true ? '#778899' : '#300E02',
                                             color: rifa.client[0]?.id.length > 0 ? '#300E02' : '#fff'
                                             
@@ -276,7 +272,7 @@ export default function Product() {
                                 mt="2rem"
                                 mb="1rem"
                                 p='2rem'
-                                w={['22rem', '22rem', '25rem']}
+                                w={['20rem', '20rem', '20rem', '25rem']}
                                 type="button"
                                 bg="#f6eccf"
                                 _hover={{ bg: '#5d2e27', color: '#fff' }}
@@ -291,102 +287,95 @@ export default function Product() {
                       }        
                   </Flex>
                     ) : 
-                    <ScaleFade initialScale={0.9} in={isOpen}>
-                    <Flex h="100%" p="1rem" flexDir={'column'} justify={'center'} align={'center'}>
-                    
+                    <ScaleFade initialScale={0.9} in={isOpen}>                    
                     {!loadingQRCODE ?
-                            <Flex   flexDir={'column'} justify={'center'} align={'center'}>
-                             
-                              <Flex flexDir={'column'} as="form" onSubmit={handleSubmit(sendRifasForApi)}
-                              >
-                                <Input
-                                  color="#5d2e27"
-                                  fontWeight={600}
-                                  w={['20rem', '20rem', '25rem']}
-                                  bg="#f6eccf"
-                                  label="Nome"
-                                  error={errors.name}
-                                  {...register('name')}
-                                />
-                                <MaskedInput
-                                  bg="#f6eccf"
-                                  fontWeight={600}
-                                  w={['20rem', '20rem', '25rem']}
-                                  color="#5d2e27"
-                                  label="Celular"
-                                  mask={[
-                                    '(',
-                                    /\d/,
-                                    /\d/,
-                                    ')',
-                                    ' ',
-                                    /\d/,
-                                    /\d/,
-                                    /\d/,
-                                    /\d/,
-                                    /\d/,
-                                    '-',
-                                    /\d/,
-                                    /\d/,
-                                    /\d/,
-                                    /\d/,
-                                  ]}
-                                  error={errors.numberPhone}
-                                  {...register('numberPhone')}
-                                  />
-                                  <Button
-                                      mt="2rem"
-                                      p='2rem'
-                                      w={['20rem', '20rem', '25rem']}
-                                      type="submit"
-                                      bg="#f6eccf"
-                                      _hover={{ bg: '#5d2e27', color: '#fff' }}
-                                      color="#5d2e27"
-                                      size="lg"
-                                    >
-                                      Comprar
-                                    </Button>
-                              </Flex>  
-                              </Flex>
-                              : 
-                                  qrCode.imagemQrcode == null ? 
-                                    <Spinner size={'lg'} /> 
-                                  :
-          
-                                  <ScaleFade initialScale={0.9} in={isOpen}>
-                                    <Flex flexDir={'column'} justify={'center'} align={'center'}>
-                                      <Text w={['15rem', '15rem', '25rem']}>No seu aplicativo do banco, selecione a opção de PIX QRCODE, aponte a camera do celular para o QRCODE e conclua o pagamento.</Text>
-                                      <Image mt="2rem" alt='qrcode' src={qrCode.imagemQrcode} width={'12rem'}/>   
-                                      <Text mt='2rem'>ou</Text>
-                                      <Text mt='1rem' w={['15rem', '15rem', '25rem']}>Selecione a opção PIX Copia e Cola, copie o texto abaixo e conclua o pagamento.</Text>
-                                      <Text
-                                        background={'#f6eccf'}
-                                        p={'1rem'}
-                                        mt='2rem'
-                                        color='#5d2e27'
-                                        align="start"
-                                        w={['15rem', '15rem', '25rem']}
-                                      >
-                                      {qrCode.qrcode}
-                                    </Text>
-          
-                                    <Button
-                                      mt="1rem"
-                                      _hover={{ bg: '#5d2e27', color: '#fff' }}
-                                      bg="#f6eccf"
-                                      color="#5d2e27"
-                                      onClick={handleCopyClick}
-                                    >
-                                      Copiar
-                                    </Button>
-                                    <Text mt='1rem' w={['15rem', '15rem', '25rem']}>Assim que concluir o pagamento, os números selecionados serão reservados e mudarão de cor no nosso sistema.</Text>
-                                  </Flex>   
-                                </ScaleFade>
-                                } 
+                    <Flex flexDir={'column'} as="form" onSubmit={handleSubmit(sendRifasForApi)}
+                    >
+                      <Input
+                        color="#5d2e27"
+                        fontWeight={600}
+                        w={['20rem', '20rem', '20rem', '25rem']}
+                        bg="#f6eccf"
+                        label="Nome"
+                        error={errors.name}
+                        {...register('name')}
+                      />
+                      <MaskedInput
+                        bg="#f6eccf"
+                        fontWeight={600}
+                        w={['20rem', '20rem', '20rem', '25rem']}
+                        color="#5d2e27"
+                        label="Celular"
+                        mask={[
+                          '(',
+                          /\d/,
+                          /\d/,
+                          ')',
+                          ' ',
+                          /\d/,
+                          /\d/,
+                          /\d/,
+                          /\d/,
+                          /\d/,
+                          '-',
+                          /\d/,
+                          /\d/,
+                          /\d/,
+                          /\d/,
+                        ]}
+                        error={errors.numberPhone}
+                        {...register('numberPhone')}
+                        />
+                        <Button
+                            mt="2rem"
+                            p='2rem'
+                            w={['20rem', '20rem', '20rem', '25rem']}
+                            type="submit"
+                            bg="#f6eccf"
+                            _hover={{ bg: '#5d2e27', color: '#fff' }}
+                            color="#5d2e27"
+                            size="lg"
+                          >
+                            Comprar
+                          </Button>
                     </Flex>
+                    : 
+                    qrCode.imagemQrcode == null ? 
+                      <Spinner size={'lg'} /> 
+                    :
+                    <ScaleFade initialScale={0.9} in={isOpen}>
+                      <Flex flexDir={'column'} justify={'center'} align={'center'}>
+                        <Text w={['15rem', '15rem', '18rem', '25rem']}>No seu aplicativo do banco, selecione a opção de PIX QRCODE, aponte a camera do celular para o QRCODE e conclua o pagamento.</Text>
+                        <Image mt="2rem" alt='qrcode' src={qrCode.imagemQrcode} width={'12rem'}/>   
+                        <Text mt='2rem'>ou</Text>
+                        <Text mt='1rem'  w={['15rem', '15rem', '18rem', '25rem']}>Selecione a opção PIX Copia e Cola, copie o texto abaixo e conclua o pagamento.</Text>
+                        <Text
+                          background={'#f6eccf'}
+                          p={'1rem'}
+                          mt='2rem'
+                          color='#5d2e27'
+                          align="start"
+                          w={['15rem', '15rem', '18rem', '25rem']}
+                        >
+                        {qrCode.qrcode}
+                      </Text>
+
+                      <Button
+                        mt="1rem"
+                        _hover={{ bg: '#5d2e27', color: '#fff' }}
+                        bg="#f6eccf"
+                        color="#5d2e27"
+                        onClick={handleCopyClick}
+                      >
+                        Copiar
+                      </Button>
+                      <Text mt='1rem' w={['15rem', '15rem', '18rem', '25rem']}>Assim que concluir o pagamento, os números selecionados serão reservados e mudarão de cor no nosso sistema.</Text>
+                    </Flex>   
                   </ScaleFade>
-                    }
-                </Flex>
+                  } 
+                  </ScaleFade>
+                }
+              </VStack>
             </Flex>
         </>
     )
