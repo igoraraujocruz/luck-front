@@ -294,7 +294,7 @@ export default function Product() {
                                 <Input
                                   color="#5d2e27"
                                   fontWeight={600}
-                                  w={['22rem', '22rem', '25rem']}
+                                  w={['20rem', '20rem', '25rem']}
                                   bg="#f6eccf"
                                   label="Nome"
                                   error={errors.name}
@@ -303,7 +303,7 @@ export default function Product() {
                                 <MaskedInput
                                   bg="#f6eccf"
                                   fontWeight={600}
-                                  w={['22rem', '22rem', '25rem']}
+                                  w={['20rem', '20rem', '25rem']}
                                   color="#5d2e27"
                                   label="Celular"
                                   mask={[
@@ -353,10 +353,10 @@ export default function Product() {
                                       <Text mt='2rem'>ou</Text>
                                       <Text mt='1rem' w={['15rem', '15rem', '25rem']}>Selecione a opção PIX Copia e Cola, copie o texto abaixo e conclua o pagamento.</Text>
                                       <Text
-                                        background={'#1a202c'}
+                                        background={'#f6eccf'}
                                         p={'1rem'}
                                         mt='2rem'
-                                        color='#fff'
+                                        color='#5d2e27'
                                         align="start"
                                         w={['15rem', '15rem', '25rem']}
                                       >
@@ -364,12 +364,10 @@ export default function Product() {
                                     </Text>
           
                                     <Button
-                                      mt="1rem" 
-                                      _hover={{
-                                        bg: '#1a202c',
-                                      }}
-                                      bg="#233142"
-                                      color="#fff"
+                                      mt="1rem"
+                                      _hover={{ bg: '#5d2e27', color: '#fff' }}
+                                      bg="#f6eccf"
+                                      color="#5d2e27"
                                       onClick={handleCopyClick}
                                     >
                                       Copiar
