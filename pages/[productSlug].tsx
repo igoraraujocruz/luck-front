@@ -238,7 +238,7 @@ export default function Product() {
                   <Text>4º Clique em comprar, e pronto!</Text> 
                   <Text>Seu número estará reservado, após o pagamento, até a data do sorteio.</Text>
                 </VStack>
-                <Img src="egg.png" alt="imagemChocolate" pos={'relative'} top={['-2.5rem', '-2.5rem', '-2.5rem', '-2.5rem']} left={['10rem', '10rem', '9rem', '14.5rem']} w={['3rem', '3rem', '3rem', '3rem', '5rem']} h={['3rem', '3rem', '3rem', '3rem', '5rem']} />
+                <Img src="egg.png" alt="imagemChocolate" pos={'relative'} top={['-2.5rem', '-2.5rem', '-2.5rem', '-2.5rem']} left={['10rem', '10rem', '9rem', '14.5rem']} w={['3rem', '3rem', '3rem', '3rem']} h={['3rem', '3rem', '3rem', '3rem']} />
               </VStack>
               <VStack w={'50%'}>
                 
@@ -261,10 +261,10 @@ export default function Product() {
                                 >
                                     {product.rifas.sort((a, b) => a.number - b.number).map(rifa => (
                                         <Flex onClick={() => rifa.client[0]?.id.length > 0 ? rifaJaComprada() : handleSelectRifas(rifa)} cursor={rifa.client[0]?.id.length > 0 ? 'default' : 'pointer'} borderRadius={'0.5rem'} _hover={{
-                                            bg: rifa.isPaid === true ? '#778899' : '#300E02',
+                                            bg: rifa.isPaid === true ? '#300E02' : '#80471C',
                                             color: rifa.client[0]?.id.length > 0 ? '#300E02' : '#fff'
                                             
-                                        }} w={['3rem', '3rem', '3rem', '3rem', '4rem']} h={['3rem', '3rem', '3rem','3rem', '4rem']} bg={rifa.isPaid === true ? '#778899' : rifa.client[0]?.id.length > 0 ? '#300E02' : selectedRifas.includes(rifa) ? '#300E02' : '#f6eccf'} justify={'center'} fontWeight={700} color={selectedRifas.includes(rifa) ? '#fff' : '#300E02'} align={'center'} key={rifa.id}>{rifa.number}</Flex>
+                                        }} w={['3rem', '3rem', '3rem', '3rem', '4rem']} h={['3rem', '3rem', '3rem','3rem', '4rem']} bg={rifa.isPaid === true ? '#778899' : rifa.client[0]?.id.length > 0 ? '#300E02' : selectedRifas.includes(rifa) ? '#80471C' : '#f6eccf'} justify={'center'} fontWeight={700} color={selectedRifas.includes(rifa) ? '#fff' : '#300E02'} align={'center'} key={rifa.id}>{rifa.number}</Flex>
                                         ))} 
                                 </Grid>
                         
