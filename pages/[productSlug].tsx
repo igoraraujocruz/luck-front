@@ -189,7 +189,7 @@ export default function Product() {
 
     const rifaJaComprada = () => {
         return toast({
-          title: 'Essa rifa já foi comprada',
+          title: 'Este número já foi comprado',
           status: 'error',
           duration: 2000,
           isClosable: true,
