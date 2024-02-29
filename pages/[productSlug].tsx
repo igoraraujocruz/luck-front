@@ -223,10 +223,10 @@ export default function Product() {
                 <VStack bg='#300E02' align={'start'} w={['20rem', '20rem', '20rem', '30rem']} borderRadius={'0.5rem'} p={'2rem'}>
                   <Text  fontSize={['1.5rem']}  overflowY={'auto'}>Regulamento</Text>
                   <UnorderedList>
-                    <ListItem>O vencedor será os últimos 2 dígitos do 1º sorteio da loteria federal do dia 27/03/2024.</ListItem>
-                    <Text fontSize={'0.8rem'} fontStyle={'italic'}>Caso não exista um vencedor no 1º sorteio, será utilizado os 2 últimos dígitos do 2º sorteito, e assim por diante...</Text>
-                    <ListItem mt={'1rem'}>O local da entrega será somente em Vitória/ES, a combinar.</ListItem>
-                    <ListItem mt={'1rem'}>A entrega deverá ser feita até o dia 29/03/2024</ListItem>
+                    <ListItem>O sorteio será pela Loteria Federal</ListItem>
+                    <Text fontSize={'0.8rem'} fontStyle={'italic'}>Serão considerados os 2 últimos dígitos do 1º sorteio. Caso não haja vencedor com este, serão utilizados os 2 últimos dígitos do 2º sorteito e assim por diante...</Text>
+                    <ListItem mt={'1rem'}>O local de entrega do prêmio será a combinar em Vitória/ES</ListItem>
+                    <ListItem mt={'1rem'}>Entrega até o dia 29/03/2024</ListItem>
                   </UnorderedList>
                 </VStack>
                 <VStack bg='#300E02' align={'start'} w={['20rem', '20rem', '20rem', '30rem']} borderRadius={'0.5rem'} p={'2rem'}>
@@ -236,7 +236,7 @@ export default function Product() {
                   <Text>2º Clique no botão Continuar.</Text>
                   <Text>3º Insira seus dados.</Text>
                   <Text>4º Clique em comprar, e pronto!</Text> 
-                  <Text>Seu número estará reservado até a data do sorteio.</Text>
+                  <Text>Seu número estará reservado, após o pagamento, até a data do sorteio.</Text>
                 </VStack>
                 <Img src="egg.png" alt="imagemChocolate" pos={'relative'} top={['-2.5rem', '-2.5rem', '-2.5rem', '-2.5rem']} left={['10rem', '10rem', '9rem', '14.5rem']} w={['3rem', '3rem', '3rem', '3rem', '5rem']} h={['3rem', '3rem', '3rem', '3rem', '5rem']} />
               </VStack>
