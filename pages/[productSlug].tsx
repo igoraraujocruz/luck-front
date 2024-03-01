@@ -339,7 +339,7 @@ export default function Product() {
                         fontWeight={600}
                         w={['20rem', '20rem', '20rem', '25rem']}
                         color="#5d2e27"
-                        label="Celular"
+                        label="Instagram"
                         mask={[
                           '@',
                           /^[-a-zA-Z0-9_.]$/,
