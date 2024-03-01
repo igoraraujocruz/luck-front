@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Button, Flex, Grid, Heading, Image, Img, ListItem, ScaleFade, Spinner, Text, UnorderedList, VStack, useDisclosure, useToast } from "@chakra-ui/react"
+import { AspectRatio, Box, Button, Flex, Grid, Heading, Image, Img, ListItem, ScaleFade, Spinner, Text, Tooltip, UnorderedList, VStack, useDisclosure, useSafeLayoutEffect, useToast } from "@chakra-ui/react"
 import axios from "axios";
 import { GetServerSideProps } from "next"
 import Head from "next/head";
@@ -67,6 +67,7 @@ export interface Produto {
     id: string
     name: string
     socketId: string;
+    instagram: string;
     numberPhone: string
     createdAt: string
     updatedAt: string
@@ -75,10 +76,12 @@ export interface Produto {
   type ValidadeFormData = {
     name: string;
     numberPhone: string;
+    instagram?: string;
   };
 
 const validateFormSchema = yup.object().shape({
     name: yup.string().required('O nome necessário'),
+    instagram: yup.string(),
     numberPhone: yup
         .string()
         .required('Nº de Celular é obrigatório')
@@ -146,6 +149,7 @@ export default function Product() {
             numberPhone: client.numberPhone,
             productId: product.id,
             socketId: userSocketId,
+            instagram: client.instagram,
             rifas: selectedRifas.map(newRifas => newRifas.id)
           })
     
@@ -260,11 +264,15 @@ export default function Product() {
                                 gap="0.5rem"
                                 >
                                     {product.rifas.sort((a, b) => a.number - b.number).map(rifa => (
-                                        <Flex onClick={() => rifa.client[0]?.id.length > 0 ? rifaJaComprada() : handleSelectRifas(rifa)} cursor={rifa.client[0]?.id.length > 0 ? 'default' : 'pointer'} borderRadius={'0.5rem'} _hover={{
+                                      <Tooltip key={rifa.id} label={rifa.client[0]?.instagram ? rifa.client[0]?.instagram : rifa.client[0]?.name} aria-label='A tooltip' bg={'#300E02'}>
+                                      <Flex onClick={() => rifa.client[0]?.id.length > 0 ? rifaJaComprada() : handleSelectRifas(rifa)} cursor={rifa.client[0]?.id.length > 0 ? 'default' : 'pointer'} borderRadius={'0.5rem'} _hover={{
                                             bg: rifa.isPaid === true ? '#300E02' : '#80471C',
                                             color: rifa.client[0]?.id.length > 0 ? '#300E02' : '#fff'
                                             
-                                        }} w={['3rem', '3rem', '3rem', '3rem', '4rem']} h={['3rem', '3rem', '3rem','3rem', '4rem']} bg={rifa.isPaid === true ? '#300E02' : rifa.client[0]?.id.length > 0 ? '#300E02' : selectedRifas.includes(rifa) ? '#80471C' : '#f6eccf'} justify={'center'} fontWeight={700} color={selectedRifas.includes(rifa) ? '#fff' : '#300E02'} align={'center'} key={rifa.id}>{rifa.number}</Flex>
+                                        }} w={['3rem', '3rem', '3rem', '3rem', '4rem']} h={['3rem', '3rem', '3rem','3rem', '4rem']} bg={rifa.isPaid === true ? '#300E02' : rifa.client[0]?.id.length > 0 ? '#300E02' : selectedRifas.includes(rifa) ? '#80471C' : '#f6eccf'} justify={'center'} fontWeight={700} color={selectedRifas.includes(rifa) ? '#fff' : '#300E02'} align={'center'} key={rifa.id}>{rifa.number}
+                                        </Flex>
+                                    </Tooltip>
+                                        
                                         ))} 
                                 </Grid>
                         
@@ -326,6 +334,48 @@ export default function Product() {
                         error={errors.numberPhone}
                         {...register('numberPhone')}
                         />
+                        <MaskedInput
+                        bg="#f6eccf"
+                        fontWeight={600}
+                        w={['20rem', '20rem', '20rem', '25rem']}
+                        color="#5d2e27"
+                        label="Celular"
+                        mask={[
+                          '@',
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/,
+                          /^[-a-zA-Z0-9_.]$/
+                        ]}
+                        error={errors.instagram}
+                        {...register('instagram')}
+                        />
                         <Button
                             mt="2rem"
                             p='2rem'
@@ -376,6 +426,22 @@ export default function Product() {
                   </ScaleFade>
                 }
               </VStack>
+
+              {/* DESCOMENTE ESSA PARTE QUANDO O SORTEIO ESTIVER AGUARDANDO O RESULTADO
+              <Flex w={'100%'} justify={'center'} align={'center'} h={'70vh'} flexDir={'column'}>
+                <Heading>SORTEIO FINALIZADO!</Heading>
+                <Text>Aguardando resultado da Loteria Federal</Text>
+              </Flex> */}
+
+              {/* DESCOMENTE ESSA PARTE QUANDO EXISTIR UM VENCEDOR
+              <Flex w={'100%'} justify={'center'} align={'center'} h={'70vh'} flexDir={'column'}>
+                <Text>Parabéns!!!</Text>
+                <Heading>Nº XX</Heading>
+                <Heading>VENCEDOR</Heading>
+                
+                <Text>Agradecemos a todos que participaram.</Text>
+              </Flex> */}
+
             </Flex>
         </>
     )
