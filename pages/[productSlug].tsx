@@ -373,7 +373,6 @@ export default function Product() {
                           /^[-a-zA-Z0-9_.]$/,
                           /^[-a-zA-Z0-9_.]$/
                         ]}
-                        error={errors.instagram}
                         {...register('instagram')}
                         />
                         <Button
