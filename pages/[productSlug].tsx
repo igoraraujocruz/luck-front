@@ -386,6 +386,7 @@ export default function Product() {
                         ]}
                         {...register('instagram')}
                         />
+                        <Link href="#qrCode">
                         <Button
                             mt="2rem"
                             mb='1rem'
@@ -399,13 +400,14 @@ export default function Product() {
                           >
                             Comprar
                           </Button>
+                          </Link>
                     </Flex>
                     : 
                     qrCode.imagemQrcode == null ? 
                       <Spinner size={'lg'} /> 
                     :
                     <ScaleFade initialScale={0.9} in={isOpen}>
-                      <Flex flexDir={'column'} justify={'center'} align={'center'}>
+                      <Flex flexDir={'column'} justify={'center'} align={'center'} id="qrCode">
                         <Text w={['15rem', '15rem', '18rem', '25rem']}>No seu aplicativo do banco, selecione a opção de PIX QRCODE, aponte a camera do celular para o QRCODE e conclua o pagamento.</Text>
                         <Image mt="2rem" alt='qrcode' src={qrCode.imagemQrcode} width={'12rem'}/>   
                         <Text mt='2rem'>ou</Text>
@@ -430,7 +432,7 @@ export default function Product() {
                       >
                         Copiar
                       </Button>
-                      <Text mt='1rem' w={['15rem', '15rem', '18rem', '25rem']}>Assim que concluir o pagamento, os números selecionados serão reservados e mudarão de cor no nosso sistema.</Text>
+                      <Text mt='1rem' w={['15rem', '15rem', '18rem', '25rem']} mb="1rem">Assim que concluir o pagamento, os números selecionados serão reservados e mudarão de cor no nosso sistema.</Text>
                     </Flex>   
                   </ScaleFade>
                   } 
