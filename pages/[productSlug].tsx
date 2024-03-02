@@ -225,8 +225,8 @@ export default function Product() {
             <Flex flexDir={['column']} align={['center', 'center', 'start']} pt={'5rem'}>
               <Heading mb={'1rem'} fontFamily={'Madimi One, sans-serif;'} alignSelf={'center'}>MEGA CESTA DE PÁSCOA</Heading>
               <Flex gap={3} flexDir={['column', 'column', 'row']} w={'100%'} align={'center'} justify={'center'}>
-                  <VStack bg='#300E02' align={'start'} w={['28rem', '28rem', '20rem', '33rem']} h={['21rem', '21rem', '24rem', '19rem']} borderRadius={'0.5rem'} p={'1.5rem'}>
-                  <Text  fontSize={['1.5rem']}  overflowY={'auto'}>Regulamento</Text>
+                  <VStack bg='#300E02' align={'start'} w={['25rem', '25rem', '20rem', '33rem']} h={['21rem', '21rem', '24rem', '19rem']} borderRadius={'0.5rem'} p={'1.5rem'}>
+                  <Text  fontSize={['1.5rem']}>Regulamento</Text>
                   <UnorderedList>
                     <ListItem>O sorteio será pela Loteria Federal (Estimativa: Até o dia 27/03/24)</ListItem>
                     <Text fontSize={'0.8rem'} fontStyle={'italic'}>Serão considerados os 2 últimos dígitos do 1º sorteio. Caso não haja vencedor com este, serão utilizados os 2 últimos dígitos do 2º sorteito e assim por diante.
@@ -236,8 +236,8 @@ export default function Product() {
                     <ListItem mt={'0.5rem'}>Entrega até o dia 29/03/2024</ListItem>
                   </UnorderedList>
                 </VStack>
-                <VStack align={'start'} bg='#300E02' w={['28rem', '28rem', '20rem', '33rem']} h={['21rem', '21rem', '24rem', '19rem']} borderRadius={'0.5rem'} p={'1.5rem'}>
-                <Text  fontSize={['1.5rem']}  overflowY={'auto'}>Como participar:</Text>
+                <VStack align={'start'} bg='#300E02' w={['25rem', '25rem', '20rem', '33rem']} h={['21rem', '21rem', '24rem', '19rem']} borderRadius={'0.5rem'} p={'1.5rem'}>
+                <Text  fontSize={['1.5rem']}>Como participar:</Text>
                   <Text>1º Selecione seus números.</Text>
                   <Text>2º Clique no botão Continuar.</Text>
                   <Text>3º Insira seus dados.</Text>
