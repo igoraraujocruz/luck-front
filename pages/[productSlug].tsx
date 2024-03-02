@@ -225,7 +225,7 @@ export default function Product() {
             <Flex flexDir={['column']} align={['center', 'center', 'start']} pt={'5rem'}>
               <Heading mb={'1rem'} fontFamily={'Madimi One, sans-serif;'} alignSelf={'center'}>MEGA CESTA DE PÁSCOA</Heading>
               <Flex gap={3} flexDir={['column', 'column', 'row']} w={'100%'} align={'center'} justify={'center'}>
-                  <VStack bg='#300E02' align={'start'} w={['25rem', '25rem', '20rem', '33rem']} h={['21rem', '21rem', '24rem', '19rem']} borderRadius={'0.5rem'} p={'1.5rem'}>
+                  <VStack bg='#300E02' align={'start'} w={['22rem', '22rem', '20rem', '33rem']} h={['21rem', '21rem', '24rem', '19rem']} borderRadius={'0.5rem'} p={'1.5rem'}>
                   <Text  fontSize={['1.5rem']}>Regulamento</Text>
                   <UnorderedList>
                     <ListItem>O sorteio será pela Loteria Federal (Estimativa: Até o dia 27/03/24)</ListItem>
@@ -236,7 +236,7 @@ export default function Product() {
                     <ListItem mt={'0.5rem'}>Entrega até o dia 29/03/2024</ListItem>
                   </UnorderedList>
                 </VStack>
-                <VStack align={'start'} bg='#300E02' w={['25rem', '25rem', '20rem', '33rem']} h={['21rem', '21rem', '24rem', '19rem']} borderRadius={'0.5rem'} p={'1.5rem'}>
+                <VStack align={'start'} bg='#300E02' w={['22rem', '22rem', '20rem', '33rem']} h={['21rem', '21rem', '24rem', '19rem']} borderRadius={'0.5rem'} p={'1.5rem'}>
                 <Text  fontSize={['1.5rem']}>Como participar:</Text>
                   <Text>1º Selecione seus números.</Text>
                   <Text>2º Clique no botão Continuar.</Text>
