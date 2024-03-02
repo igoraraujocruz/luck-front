@@ -13,6 +13,7 @@ import NextImage from 'next/image'
 import { SocketContext } from "@/hooks/useSocket";
 import { useRouter } from 'next/router';
 import { api } from "@/api";
+import Link from "next/link";
 
 
 interface Params extends ParsedUrlQuery {
@@ -283,7 +284,7 @@ export default function Product() {
                                         
                                         ))} 
                                 </Grid>
-                        
+                                <Link href="#formComprar">
                                 <Button
                                 mt="2rem"
                                 mb="1rem"
@@ -298,14 +299,16 @@ export default function Product() {
                             >
                                 Continuar
                             </Button>
+                            </Link>
                         </Flex>
+                        
                       ): <Spinner size={'lg'} /> 
                       }        
                   </Flex>
                     ) : 
                     <ScaleFade initialScale={0.9} in={isOpen}>                    
                     {!loadingQRCODE ?
-                    <Flex flexDir={'column'} as="form" onSubmit={handleSubmit(sendRifasForApi)}
+                    <Flex flexDir={'column'} id="formComprar" as="form" onSubmit={handleSubmit(sendRifasForApi)}
                     >
                       <Input
                         color="#5d2e27"
@@ -385,6 +388,7 @@ export default function Product() {
                         />
                         <Button
                             mt="2rem"
+                            mb='1rem'
                             p='2rem'
                             w={['20rem', '20rem', '20rem', '25rem']}
                             type="submit"
