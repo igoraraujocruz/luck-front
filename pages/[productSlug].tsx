@@ -222,29 +222,37 @@ export default function Product() {
             </Head>
 
 
-            <Flex flexDir={['column', 'column', 'row']} gap={'3rem'} align={['center', 'center', 'start']} p={'5rem'}>
-              <VStack w={'50%'}>
-                <VStack bg='#300E02' align={'start'} w={['20rem', '20rem', '20rem', '30rem']} borderRadius={'0.5rem'} p={'2rem'}>
+            <Flex flexDir={['column']} align={['center', 'center', 'start']} pt={'5rem'}>
+              <Heading mb={'1rem'} fontFamily={'Madimi One, sans-serif;'} alignSelf={'center'}>MEGA CESTA DE PÁSCOA</Heading>
+              <Flex gap={3} flexDir={['column', 'column', 'row']} w={'100%'} align={'center'} justify={'center'}>
+                  <VStack bg='#300E02' align={'start'} w={['28rem', '28rem', '20rem', '33rem']} h={['21rem', '21rem', '24rem', '19rem']} borderRadius={'0.5rem'} p={'1.5rem'}>
                   <Text  fontSize={['1.5rem']}  overflowY={'auto'}>Regulamento</Text>
                   <UnorderedList>
-                    <ListItem>O sorteio será pela Loteria Federal</ListItem>
-                    <Text fontSize={'0.8rem'} fontStyle={'italic'}>Serão considerados os 2 últimos dígitos do 1º sorteio. Caso não haja vencedor com este, serão utilizados os 2 últimos dígitos do 2º sorteito e assim por diante...</Text>
-                    <ListItem mt={'1rem'}>O local de entrega do prêmio será a combinar em Vitória/ES</ListItem>
-                    <ListItem mt={'1rem'}>Entrega até o dia 29/03/2024</ListItem>
+                    <ListItem>O sorteio será pela Loteria Federal (Estimativa: Até o dia 27/03/24)</ListItem>
+                    <Text fontSize={'0.8rem'} fontStyle={'italic'}>Serão considerados os 2 últimos dígitos do 1º sorteio. Caso não haja vencedor com este, serão utilizados os 2 últimos dígitos do 2º sorteito e assim por diante.
+                    A estimativa é que o sorteio aconteça no dia 27/03/24. Se todos os números forem vendidos, o sorteio poderá ser antecipado (A nova data será divulgada no instagram).
+                    </Text>
+                    <ListItem mt={'0.5rem'}>O local de entrega do prêmio será a combinar em Vitória/ES</ListItem>
+                    <ListItem mt={'0.5rem'}>Entrega até o dia 29/03/2024</ListItem>
                   </UnorderedList>
                 </VStack>
-                <VStack bg='#300E02' align={'start'} w={['20rem', '20rem', '20rem', '30rem']} borderRadius={'0.5rem'} p={'2rem'}>
-                  <Text  fontSize={['1.5rem']}  overflowY={'auto'}>{product.name}</Text>
-                  <Text>Como participar:</Text>
+                <VStack align={'start'} bg='#300E02' w={['28rem', '28rem', '20rem', '33rem']} h={['21rem', '21rem', '24rem', '19rem']} borderRadius={'0.5rem'} p={'1.5rem'}>
+                <Text  fontSize={['1.5rem']}  overflowY={'auto'}>Como participar:</Text>
                   <Text>1º Selecione seus números.</Text>
                   <Text>2º Clique no botão Continuar.</Text>
                   <Text>3º Insira seus dados.</Text>
                   <Text>4º Clique em comprar, e pronto!</Text> 
                   <Text>Seu número estará reservado, após o pagamento, até a data do sorteio.</Text>
                 </VStack>
-                <Img src="egg.png" alt="imagemChocolate" pos={'relative'} top={['-2.5rem', '-2.5rem', '-2.5rem', '-2.5rem']} left={['10rem', '10rem', '9rem', '14.5rem']} w={['3rem', '3rem', '3rem', '3rem']} h={['3rem', '3rem', '3rem', '3rem']} />
-              </VStack>
-              <VStack w={'50%'}>
+              </Flex>
+              
+            
+              <Flex flexDir={['column','column', 'row']} align={['center', 'center', 'start']} justify={'center'} gap={4} mt={'1rem'} w={'100%'}>
+              <Image borderRadius={'2rem'} maxW={['22rem', '22rem', '26rem', '32rem', '33rem', '37rem']} src={product.imgSrc} alt={product.slug} />
+
+              <VStack>
+
+              
                 
               {!isOpen ? (
                         <Flex justify={'center'}  flexDir={'column'} align={'center'}>
@@ -255,10 +263,10 @@ export default function Product() {
                                 templateColumns={[
                                     '1fr 1fr 1fr 1fr 1fr 1fr',
                                     '1fr 1fr 1fr 1fr 1fr 1fr',
-                                    '1fr 1fr 1fr 1fr 1fr 1f',
+                                    '1fr 1fr 1fr 1fr 1fr 1fr',
                                     '1fr 1fr 1fr 1fr 1fr 1fr 1fr',
+                                    '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
                                     '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
-                                    '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
                                 ]}
                       
                                 gap="0.5rem"
@@ -269,7 +277,7 @@ export default function Product() {
                                             bg: rifa.isPaid === true ? '#300E02' : '#80471C',
                                             color: rifa.client[0]?.id.length > 0 ? '#300E02' : '#fff'
                                             
-                                        }} w={['3rem', '3rem', '3rem', '3rem', '4rem']} h={['3rem', '3rem', '3rem','3rem', '4rem']} bg={rifa.isPaid === true ? '#300E02' : rifa.client[0]?.id.length > 0 ? '#300E02' : selectedRifas.includes(rifa) ? '#80471C' : '#f6eccf'} justify={'center'} fontWeight={700} color={selectedRifas.includes(rifa) ? '#fff' : '#300E02'} align={'center'} key={rifa.id}>{rifa.number}
+                                        }} w={['3rem', '3rem', '3rem','3.4rem', '4rem']} h={['3rem', '3rem', '3rem','3.4rem', '4rem']} bg={rifa.isPaid === true ? '#300E02' : rifa.client[0]?.id.length > 0 ? '#300E02' : selectedRifas.includes(rifa) ? '#80471C' : '#f6eccf'} justify={'center'} fontWeight={700} color={selectedRifas.includes(rifa) ? '#fff' : '#300E02'} align={'center'} key={rifa.id}>{rifa.number}
                                         </Flex>
                                     </Tooltip>
                                         
@@ -425,6 +433,8 @@ export default function Product() {
                   </ScaleFade>
                 }
               </VStack>
+              </Flex>
+              
 
               {/* DESCOMENTE ESSA PARTE QUANDO O SORTEIO ESTIVER AGUARDANDO O RESULTADO
               <Flex w={'100%'} justify={'center'} align={'center'} h={'70vh'} flexDir={'column'}>
