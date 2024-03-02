@@ -248,7 +248,7 @@ export default function Product() {
               
             
               <Flex flexDir={['column','column', 'row']} align={['center', 'center', 'start']} justify={'center'} gap={4} mt={'1rem'} w={'100%'}>
-              <Image borderRadius={'2rem'} maxW={['30rem', '30rem', '24rem', '32rem', '33rem', '37rem']} src={product.imgSrc} alt={product.slug} />
+              <Image borderRadius={'2rem'} maxW={['24rem', '24rem', '24rem', '32rem', '33rem', '37rem']} src={product.imgSrc} alt={product.slug} />
 
               <VStack>
 
@@ -262,7 +262,7 @@ export default function Product() {
                                 <Grid             
                                 templateColumns={[
                                     '1fr 1fr 1fr 1fr 1fr 1fr',
-                                    '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
+                                    '1fr 1fr 1fr 1fr 1fr 1fr',
                                     '1fr 1fr 1fr 1fr 1fr 1fr',
                                     '1fr 1fr 1fr 1fr 1fr 1fr 1fr',
                                     '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
