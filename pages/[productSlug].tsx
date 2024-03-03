@@ -155,7 +155,7 @@ export default function Product() {
           })
     
           toast({
-            title: 'Rifas compradas com sucesso.',
+            title: 'Número(s) comprado(s) com sucesso.',
             status: 'success',
             duration: 2000,
             isClosable: true,
