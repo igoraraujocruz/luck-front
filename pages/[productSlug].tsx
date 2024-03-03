@@ -224,7 +224,7 @@ export default function Product() {
 
 
             <Flex flexDir={['column']} align={['center', 'center', 'start']} pt={'2.5rem'}>
-              <Heading mb={'1rem'} fontFamily={'Madimi One, sans-serif;'} alignSelf={'center'}>MEGA CESTA DE PÁSCOA</Heading>
+              <Heading mb={'1rem'} fontFamily={'Madimi One, sans-serif;'} alignSelf={'center'}>{product.name}</Heading>
               <Flex gap={3} flexDir={['column', 'column', 'row']} w={'100%'} align={'center'} justify={'center'}>
                   <VStack bg='#300E02' align={'start'} p="2rem" w={['20rem', '20rem', '20rem', '33rem']} borderRadius={'0.5rem'}>
                   <Text  fontSize={['1.5rem']}>Regulamento</Text>
