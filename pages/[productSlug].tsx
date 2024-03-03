@@ -223,7 +223,7 @@ export default function Product() {
             </Head>
 
 
-            <Flex flexDir={['column']} align={['center', 'center', 'start']} pt={'5rem'}>
+            <Flex flexDir={['column']} align={['center', 'center', 'start']} pt={'2.5rem'}>
               <Heading mb={'1rem'} fontFamily={'Madimi One, sans-serif;'} alignSelf={'center'}>MEGA CESTA DE PÁSCOA</Heading>
               <Flex gap={3} flexDir={['column', 'column', 'row']} w={'100%'} align={'center'} justify={'center'}>
                   <VStack bg='#300E02' align={'start'} p="2rem" w={['20rem', '20rem', '20rem', '33rem']} borderRadius={'0.5rem'}>
@@ -250,12 +250,17 @@ export default function Product() {
             
               <Flex flexDir={['column','column', 'row']} align={['center', 'center', 'start']} justify={'center'} gap={4} mt={'1rem'} w={'100%'}>
 
-                {product.imgSrc && (
+                {product.imgSrc ? (
                   <VStack>
                     <Image borderRadius={'2rem'} maxW={['22rem', '22rem', '24rem', '32rem', '33rem', '37rem']} src={product.imgSrc} alt={product.slug} />
                     <Text pos='relative' h={['11.5rem', '11.5rem', '10rem', '8rem']} top={['-12rem', '-12rem', '-12rem', '-10rem']} bg={'rgba(48, 14, 2, 0.8)'} p={'0.5rem'} w={['22rem', '22rem', '23rem', '30rem']} borderRadius={['2rem','2rem', '0.5rem']}>{product.description}</Text>
                   </VStack>
-                )}
+                ) :
+                <VStack>
+                    <Image borderRadius={'2rem'} maxW={['22rem', '22rem', '24rem', '32rem', '33rem', '37rem']} src={'https://placehold.co/600x900'} alt={'placeholder'} />
+                    <Text pos='relative' h={['11.5rem', '11.5rem', '10rem', '8rem']} top={['-12rem', '-12rem', '-12rem', '-10rem']} bg={'rgba(48, 14, 2, 0.8)'} p={'0.5rem'} w={['22rem', '22rem', '23rem', '30rem']} borderRadius={['2rem','2rem', '0.5rem']}>{product.description}</Text>
+                  </VStack>
+                }
                 
                 
               
@@ -307,7 +312,7 @@ export default function Product() {
                             </Link>
                         </Flex>
                         
-                      ): <Spinner size={'lg'} /> 
+                      ): <Spinner mt={'11rem'} size={'lg'} /> 
                       }        
                   </Flex>
                     ) : 
