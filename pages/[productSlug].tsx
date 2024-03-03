@@ -249,12 +249,14 @@ export default function Product() {
               
             
               <Flex flexDir={['column','column', 'row']} align={['center', 'center', 'start']} justify={'center'} gap={4} mt={'1rem'} w={'100%'}>
-              <Image borderRadius={'2rem'} maxW={['22rem', '22rem', '24rem', '32rem', '33rem', '37rem']} src={product.imgSrc} alt={product.slug} />
-
-              <VStack>
-
-              
                 
+                <VStack>
+                    <Image borderRadius={'2rem'} maxW={['22rem', '22rem', '24rem', '32rem', '33rem', '37rem']} src={product.imgSrc} alt={product.slug} />
+                    <Text pos='relative' top={['-12rem', '-12rem', '-12rem', '-10rem']} bg={'rgba(48, 14, 2, 0.8)'} p={'0.5rem'} maxW={['22rem', '22rem', '23rem', '30rem']} borderRadius={['2rem','2rem', '0.5rem']}>{product.description}</Text>
+
+                </VStack>
+              
+              <VStack mt={['-11rem', '-11rem', 0]}>
               {!isOpen ? (
                         <Flex justify={'center'}  flexDir={'column'} align={'center'}>
                           
