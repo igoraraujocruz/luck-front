@@ -46,6 +46,7 @@ export interface Produto {
     description: string
     luckDay: string
     slug: string
+    isActivate: boolean
     price: string
     quantidadeDeRifas: number
     rifasRestantes: number
@@ -185,6 +186,14 @@ export default function Product() {
       };
 
     const handleSelectRifas = (rifa: Rifa) => {
+        if(product.isActivate === false) {
+          return toast({
+            title: 'O sorteio está desativado.',
+            status: 'error',
+            duration: 2000,
+            isClosable: true,
+          })
+        }
         if (selectedRifas.includes(rifa)) {
           setSelectedRifas(selectedRifas.filter(item => item.id !== rifa.id))
           return
@@ -246,12 +255,18 @@ export default function Product() {
                   <Text>Seu número estará reservado, após o pagamento, até a data do sorteio.</Text>
                 </VStack>
               </Flex>
+
+              {product.isActivate === false && (
+                <Flex mt='2rem' mb={'2rem'} justify={'center'}  w={'100%'}>
+                  <Heading>Compras Encerradas</Heading>
+                </Flex>
+              )}
               
             
               <Flex flexDir={['column','column', 'row']} align={['center', 'center', 'start']} justify={'center'} gap={4} mt={'1rem'} w={'100%'}>
 
                 {product.imgSrc ? (
-                  <VStack>
+                  <VStack opacity={product.isActivate ? 1 : 0.5}>
                     <Image borderRadius={'2rem'} maxW={['22rem', '22rem', '24rem', '32rem', '33rem', '37rem']} src={product.imgSrc} alt={product.slug} />
                     <Text pos='relative' h={['11.5rem', '11.5rem', '10rem', '8rem']} top={['-12rem', '-12rem', '-12rem', '-10rem']} bg={'rgba(48, 14, 2, 0.8)'} p={'0.5rem'} w={['22rem', '22rem', '23rem', '30rem']} borderRadius={['2rem','2rem', '0.5rem']}>{product.description}</Text>
                   </VStack>
@@ -284,18 +299,19 @@ export default function Product() {
                                 >
                                     {product.rifas.sort((a, b) => a.number - b.number).map(rifa => (
                                       <Tooltip key={rifa.id} label={rifa.client[0]?.instagram ? rifa.client[0]?.instagram : rifa.client[0]?.name} aria-label='A tooltip' bg={'#300E02'}>
-                                      <Flex onClick={() => rifa.client[0]?.id.length > 0 ? rifaJaComprada() : handleSelectRifas(rifa)} cursor={rifa.client[0]?.id.length > 0 ? 'default' : 'pointer'} borderRadius={'0.5rem'} _hover={{
+                                      <Button isDisabled={product.isActivate === false} onClick={() => rifa.client[0]?.id.length > 0 ? rifaJaComprada() : handleSelectRifas(rifa)} cursor={rifa.client[0]?.id.length > 0 ? 'default' : 'pointer'} borderRadius={'0.5rem'} _hover={{
                                             bg: rifa.isPaid === true ? '#300E02' : '#80471C',
                                             color: rifa.client[0]?.id.length > 0 ? '#300E02' : '#fff'
-                                            
+                  
                                         }} w={['3rem', '3rem', '3rem','3.4rem', '4rem']} h={['3rem', '3rem', '3rem','3.4rem', '4rem']} bg={rifa.isPaid === true ? '#300E02' : rifa.client[0]?.id.length > 0 ? '#300E02' : selectedRifas.includes(rifa) ? '#80471C' : '#f6eccf'} justify={'center'} fontWeight={700} color={selectedRifas.includes(rifa) ? '#fff' : '#300E02'} align={'center'} key={rifa.id}>{rifa.number}
-                                        </Flex>
+                                        </Button>
                                     </Tooltip>
                                         
                                         ))} 
                                 </Grid>
                                 <Link href="#formComprar">
                                 <Button
+                                isDisabled={product.isActivate === false}
                                 mt="2rem"
                                 mb="1rem"
                                 p='2rem'
