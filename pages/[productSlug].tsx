@@ -103,6 +103,7 @@ export default function Product() {
     const [userSocketId, setUserSocketId] = useState('')
     const { query } = useRouter();
     const socket = useContext(SocketContext);
+    const [productNotFound, setProductNotFound] = useState(false)
 
     useEffect(() => {
       if(!query.productSlug) {
@@ -110,7 +111,7 @@ export default function Product() {
       }
 
       api.get(`/products?productSlug=${query.productSlug}`)
-      .then((response) => setProduct(response.data))
+      .then((response) => setProduct(response.data)).catch((erro) => erro.response.data.message == 'Produto não encontrado' && setProductNotFound(true))
 
       socket.emit("room", query.productSlug);
 
@@ -230,260 +231,252 @@ export default function Product() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-
-
-            <Flex flexDir={['column']} align={['center', 'center', 'start']} pt={'2.5rem'}>
-              <Heading mb={'1rem'} fontFamily={'Madimi One, sans-serif;'} alignSelf={'center'}>{product.name}</Heading>
-              <Flex gap={3} flexDir={['column', 'column', 'row']} w={'100%'} align={'center'} justify={'center'}>
-                  <VStack bg='#300E02' align={'start'} p="2rem" w={['20rem', '20rem', '20rem', '33rem']} borderRadius={'0.5rem'}>
-                  <Text  fontSize={['1.5rem']}>Regulamento</Text>
-                  <UnorderedList>
-                    <ListItem>O sorteio será pela Loteria Federal (Estimativa: Até o dia 27/03/24)</ListItem>
-                    <Text fontSize={'0.8rem'} fontStyle={'italic'}>Serão considerados os 2 últimos dígitos do 1º sorteio. Caso não haja vencedor com este, serão utilizados os 2 últimos dígitos do 2º sorteito e assim por diante.
-                    A estimativa é que o sorteio aconteça no dia 27/03/24. Se todos os números forem vendidos, o sorteio poderá ser antecipado (A nova data será divulgada no instagram).
-                    </Text>
-                    <ListItem mt={'0.5rem'}>O local de entrega do prêmio será a combinar em Vitória/ES</ListItem>
-                    <ListItem mt={'0.5rem'}>Entrega até o dia 29/03/2024</ListItem>
-                  </UnorderedList>
-                </VStack>
-                <VStack align={'start'} bg='#300E02' w={['20rem', '20rem', '20rem', '33rem']}  borderRadius={'0.5rem'} p={'1.5rem'}>
-                <Text  fontSize={['1.5rem']}>Como participar:</Text>
-                  <Text>1º Selecione seus números.</Text>
-                  <Text>2º Clique no botão Continuar.</Text>
-                  <Text>3º Insira seus dados.</Text>
-                  <Text>4º Clique em comprar, e pronto!</Text> 
-                  <Text>Seu número estará reservado, após o pagamento, até a data do sorteio.</Text>
-                </VStack>
+            {productNotFound ? 
+              <Flex gap={2} justify={'center'} flexDir={'column'} p={'10rem'} align='center' h={'100vh'}>
+                <Heading>Sorteio não encontrado!</Heading>
+                <Text>Verifique se o site está correto</Text>
               </Flex>
-
-              {product.isActivate === false && (
-                <Flex mt='2rem' mb={'2rem'} justify={'center'}  w={'100%'}>
-                  <Heading>Compras Encerradas</Heading>
+              : (
+                <Flex flexDir={['column']} align={['center', 'center', 'start']} pt={'2.5rem'}>
+                <Heading mb={'1rem'} fontFamily={'Madimi One, sans-serif;'} alignSelf={'center'}>{product.name}</Heading>
+                <Flex gap={3} flexDir={['column', 'column', 'row']} w={'100%'} align={'center'} justify={'center'}>
+                    <VStack bg='#300E02' align={'start'} p="2rem" w={['20rem', '20rem', '20rem', '33rem']} borderRadius={'0.5rem'}>
+                    <Text  fontSize={['1.5rem']}>Regulamento</Text>
+                    <UnorderedList>
+                      <ListItem>O sorteio será pela Loteria Federal (Estimativa: Até o dia 27/03/24)</ListItem>
+                      <Text fontSize={'0.8rem'} fontStyle={'italic'}>Serão considerados os 2 últimos dígitos do 1º sorteio. Caso não haja vencedor com este, serão utilizados os 2 últimos dígitos do 2º sorteito e assim por diante.
+                      A estimativa é que o sorteio aconteça no dia 27/03/24. Se todos os números forem vendidos, o sorteio poderá ser antecipado (A nova data será divulgada no instagram).
+                      </Text>
+                      <ListItem mt={'0.5rem'}>O local de entrega do prêmio será a combinar em Vitória/ES</ListItem>
+                      <ListItem mt={'0.5rem'}>Entrega até o dia 29/03/2024</ListItem>
+                    </UnorderedList>
+                  </VStack>
+                  <VStack align={'start'} bg='#300E02' w={['20rem', '20rem', '20rem', '33rem']}  borderRadius={'0.5rem'} p={'1.5rem'}>
+                  <Text  fontSize={['1.5rem']}>Como participar:</Text>
+                    <Text>1º Selecione seus números.</Text>
+                    <Text>2º Clique no botão Continuar.</Text>
+                    <Text>3º Insira seus dados.</Text>
+                    <Text>4º Clique em comprar, e pronto!</Text> 
+                    <Text>Seu número estará reservado, após o pagamento, até a data do sorteio.</Text>
+                  </VStack>
                 </Flex>
-              )}
-              
-            
-              <Flex flexDir={['column','column', 'row']} align={['center', 'center', 'start']} justify={'center'} gap={4} mt={'1rem'} w={'100%'}>
-
-                {product.imgSrc ? (
-                  <VStack opacity={product.isActivate ? 1 : 0.5}>
-                    <Image borderRadius={'2rem'} maxW={['22rem', '22rem', '24rem', '32rem', '33rem', '37rem']} src={product.imgSrc} alt={product.slug} />
-                    <Text pos='relative' h={['11.5rem', '11.5rem', '10rem', '8rem']} top={['-12rem', '-12rem', '-12rem', '-10rem']} bg={'rgba(48, 14, 2, 0.8)'} p={'0.5rem'} w={['22rem', '22rem', '23rem', '30rem']} borderRadius={['2rem','2rem', '0.5rem']}>{product.description}</Text>
-                  </VStack>
-                ) :
-                <VStack>
-                    <Image borderRadius={'2rem'} maxW={['22rem', '22rem', '24rem', '32rem', '33rem', '37rem']} src={'https://placehold.co/600x900'} alt={'placeholder'} />
-                    <Text pos='relative' h={['11.5rem', '11.5rem', '10rem', '8rem']} top={['-12rem', '-12rem', '-12rem', '-10rem']} bg={'rgba(48, 14, 2, 0.8)'} p={'0.5rem'} w={['22rem', '22rem', '23rem', '30rem']} borderRadius={['2rem','2rem', '0.5rem']}>{product.description}</Text>
-                  </VStack>
-                }
-                
-                
-              
-              <VStack mt={['-11rem', '-11rem', 0]}>
-              {!isOpen ? (
-                        <Flex justify={'center'}  flexDir={'column'} align={'center'}>
-                          
-                            {product.rifas?.length > 0 ? (
-                                <Flex flexDir={'column'} justify={'center'} align={'center'}>
-                                <Grid             
-                                templateColumns={[
-                                    '1fr 1fr 1fr 1fr 1fr 1fr',
-                                    '1fr 1fr 1fr 1fr 1fr 1fr',
-                                    '1fr 1fr 1fr 1fr 1fr 1fr',
-                                    '1fr 1fr 1fr 1fr 1fr 1fr 1fr',
-                                    '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
-                                    '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
-                                ]}
-                      
-                                gap="0.5rem"
-                                >
-                                    {product.rifas.sort((a, b) => a.number - b.number).map(rifa => (
-                                      <Tooltip key={rifa.id} label={rifa.client[0]?.instagram ? rifa.client[0]?.instagram : rifa.client[0]?.name} aria-label='A tooltip' bg={'#300E02'}>
-                                      <Button isDisabled={product.isActivate === false} onClick={() => rifa.client[0]?.id.length > 0 ? rifaJaComprada() : handleSelectRifas(rifa)} cursor={rifa.client[0]?.id.length > 0 ? 'default' : 'pointer'} borderRadius={'0.5rem'} _hover={{
-                                            bg: rifa.isPaid === true ? '#300E02' : '#80471C',
-                                            color: rifa.client[0]?.id.length > 0 ? '#300E02' : '#fff'
-                  
-                                        }} w={['3rem', '3rem', '3rem','3.4rem', '4rem']} h={['3rem', '3rem', '3rem','3.4rem', '4rem']} bg={rifa.isPaid === true ? '#300E02' : rifa.client[0]?.id.length > 0 ? '#300E02' : selectedRifas.includes(rifa) ? '#80471C' : '#f6eccf'} fontWeight={700} color={selectedRifas.includes(rifa) ? '#fff' : '#300E02'} key={rifa.id}>{rifa.number}
-                                        </Button>
-                                    </Tooltip>
-                                        
-                                        ))} 
-                                </Grid>
-                                <Link href="#formComprar">
-                                <Button
-                                isDisabled={product.isActivate === false}
-                                mt="2rem"
-                                mb="1rem"
-                                p='2rem'
-                                w={['20rem', '20rem', '20rem', '25rem']}
-                                type="button"
-                                bg="#f6eccf"
-                                _hover={{ bg: '#5d2e27', color: '#fff' }}
-                                color="#5d2e27"
-                                size="lg"
-                                onClick={verifyRifas}
-                            >
-                                Continuar
-                            </Button>
-                            </Link>
-                        </Flex>
-                        
-                      ): <Spinner mt={'11rem'} size={'lg'} /> 
-                      }        
+  
+                {product.isActivate === false && (
+                  <Flex mt='2rem' mb={'2rem'} justify={'center'}  w={'100%'}>
+                    <Heading>Compras Encerradas</Heading>
                   </Flex>
-                    ) : 
-                    <ScaleFade initialScale={0.9} in={isOpen}>                    
-                    {!loadingQRCODE ?
-                    <Flex flexDir={'column'} id="formComprar" as="form" onSubmit={handleSubmit(sendRifasForApi)}
-                    >
-                      <Input
-                        color="#5d2e27"
-                        fontWeight={600}
-                        w={['20rem', '20rem', '20rem', '25rem']}
-                        bg="#f6eccf"
-                        label="Nome"
-                        error={errors.name}
-                        {...register('name')}
-                      />
-                      <MaskedInput
-                        bg="#f6eccf"
-                        fontWeight={600}
-                        w={['20rem', '20rem', '20rem', '25rem']}
-                        color="#5d2e27"
-                        label="Celular"
-                        mask={[
-                          '(',
-                          /\d/,
-                          /\d/,
-                          ')',
-                          ' ',
-                          /\d/,
-                          /\d/,
-                          /\d/,
-                          /\d/,
-                          /\d/,
-                          '-',
-                          /\d/,
-                          /\d/,
-                          /\d/,
-                          /\d/,
-                        ]}
-                        error={errors.numberPhone}
-                        {...register('numberPhone')}
+                )}
+                
+              
+                <Flex flexDir={['column','column', 'row']} align={['center', 'center', 'start']} justify={'center'} gap={4} mt={'1rem'} w={'100%'}>
+  
+                  {product.imgSrc ? (
+                    <VStack opacity={product.isActivate ? 1 : 0.5}>
+                      <Image borderRadius={'2rem'} maxW={['22rem', '22rem', '24rem', '32rem', '33rem', '37rem']} src={product.imgSrc} alt={product.slug} />
+                      <Text pos='relative' h={['11.5rem', '11.5rem', '10rem', '8rem']} top={['-12rem', '-12rem', '-12rem', '-10rem']} bg={'rgba(48, 14, 2, 0.8)'} p={'0.5rem'} w={['22rem', '22rem', '23rem', '30rem']} borderRadius={['2rem','2rem', '0.5rem']}>{product.description}</Text>
+                    </VStack>
+                  ) :
+                  <VStack>
+                      <Image borderRadius={'2rem'} maxW={['22rem', '22rem', '24rem', '32rem', '33rem', '37rem']} src={'https://placehold.co/600x900'} alt={'placeholder'} />
+                      <Text pos='relative' h={['11.5rem', '11.5rem', '10rem', '8rem']} top={['-12rem', '-12rem', '-12rem', '-10rem']} bg={'rgba(48, 14, 2, 0.8)'} p={'0.5rem'} w={['22rem', '22rem', '23rem', '30rem']} borderRadius={['2rem','2rem', '0.5rem']}>{product.description}</Text>
+                    </VStack>
+                  }
+                  
+                  
+                
+                <VStack mt={['-11rem', '-11rem', 0]}>
+                {!isOpen ? (
+                          <Flex justify={'center'}  flexDir={'column'} align={'center'}>
+                            
+                              {product.rifas?.length > 0 ? (
+                                  <Flex flexDir={'column'} justify={'center'} align={'center'}>
+                                  <Grid             
+                                  templateColumns={[
+                                      '1fr 1fr 1fr 1fr 1fr 1fr',
+                                      '1fr 1fr 1fr 1fr 1fr 1fr',
+                                      '1fr 1fr 1fr 1fr 1fr 1fr',
+                                      '1fr 1fr 1fr 1fr 1fr 1fr 1fr',
+                                      '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
+                                      '1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr',
+                                  ]}
+                        
+                                  gap="0.5rem"
+                                  >
+                                      {product.rifas.sort((a, b) => a.number - b.number).map(rifa => (
+                                        <Tooltip key={rifa.id} label={rifa.client[0]?.instagram ? rifa.client[0]?.instagram : rifa.client[0]?.name} aria-label='A tooltip' bg={'#300E02'}>
+                                        <Button isDisabled={product.isActivate === false} onClick={() => rifa.client[0]?.id.length > 0 ? rifaJaComprada() : handleSelectRifas(rifa)} cursor={rifa.client[0]?.id.length > 0 ? 'default' : 'pointer'} borderRadius={'0.5rem'} _hover={{
+                                              bg: rifa.isPaid === true ? '#300E02' : '#80471C',
+                                              color: rifa.client[0]?.id.length > 0 ? '#300E02' : '#fff'
+                    
+                                          }} w={['3rem', '3rem', '3rem','3.4rem', '4rem']} h={['3rem', '3rem', '3rem','3.4rem', '4rem']} bg={rifa.isPaid === true ? '#300E02' : rifa.client[0]?.id.length > 0 ? '#300E02' : selectedRifas.includes(rifa) ? '#80471C' : '#f6eccf'} fontWeight={700} color={selectedRifas.includes(rifa) ? '#fff' : '#300E02'} key={rifa.id}>{rifa.number}
+                                          </Button>
+                                      </Tooltip>
+                                          
+                                          ))} 
+                                  </Grid>
+                                  <Link href="#formComprar">
+                                  <Button
+                                  isDisabled={product.isActivate === false}
+                                  mt="2rem"
+                                  mb="1rem"
+                                  p='2rem'
+                                  w={['20rem', '20rem', '20rem', '25rem']}
+                                  type="button"
+                                  bg="#f6eccf"
+                                  _hover={{ bg: '#5d2e27', color: '#fff' }}
+                                  color="#5d2e27"
+                                  size="lg"
+                                  onClick={verifyRifas}
+                              >
+                                  Continuar
+                              </Button>
+                              </Link>
+                          </Flex>
+                          
+                        ): <Flex align={'center'} justify={'center'}>
+                          <Spinner size={'lg'} /> 
+                        </Flex>
+                        }        
+                    </Flex>
+                      ) : 
+                      <ScaleFade initialScale={0.9} in={isOpen}>                    
+                      {!loadingQRCODE ?
+                      <Flex flexDir={'column'} id="formComprar" as="form" onSubmit={handleSubmit(sendRifasForApi)}
+                      >
+                        <Input
+                          color="#5d2e27"
+                          fontWeight={600}
+                          w={['20rem', '20rem', '20rem', '25rem']}
+                          bg="#f6eccf"
+                          label="Nome"
+                          error={errors.name}
+                          {...register('name')}
                         />
                         <MaskedInput
-                        bg="#f6eccf"
-                        fontWeight={600}
-                        w={['20rem', '20rem', '20rem', '25rem']}
-                        color="#5d2e27"
-                        label="Instagram"
-                        mask={[
-                          '@',
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/,
-                          /^[-a-zA-Z0-9_.]$/
-                        ]}
-                        {...register('instagram')}
-                        />
-                        
-                        <Button
-                            mt="2rem"
-                            mb='1rem'
-                            p='2rem'
-                            w={['20rem', '20rem', '20rem', '25rem']}
-                            type="submit"
-                            bg="#f6eccf"
-                            _hover={{ bg: '#5d2e27', color: '#fff' }}
-                            color="#5d2e27"
-                            size="lg"
-                          >
-                            Comprar
-                          </Button>
+                          bg="#f6eccf"
+                          fontWeight={600}
+                          w={['20rem', '20rem', '20rem', '25rem']}
+                          color="#5d2e27"
+                          label="Celular"
+                          mask={[
+                            '(',
+                            /\d/,
+                            /\d/,
+                            ')',
+                            ' ',
+                            /\d/,
+                            /\d/,
+                            /\d/,
+                            /\d/,
+                            /\d/,
+                            '-',
+                            /\d/,
+                            /\d/,
+                            /\d/,
+                            /\d/,
+                          ]}
+                          error={errors.numberPhone}
+                          {...register('numberPhone')}
+                          />
+                          <MaskedInput
+                          bg="#f6eccf"
+                          fontWeight={600}
+                          w={['20rem', '20rem', '20rem', '25rem']}
+                          color="#5d2e27"
+                          label="Instagram"
+                          mask={[
+                            '@',
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/,
+                            /^[-a-zA-Z0-9_.]$/
+                          ]}
+                          {...register('instagram')}
+                          />
                           
-                    </Flex>
-                    : 
-                    qrCode.imagemQrcode == null ? 
-                      <Spinner size={'lg'} /> 
-                    :
-                    <ScaleFade initialScale={0.9} in={isOpen}>
-                      <Flex flexDir={'column'} justify={'center'} align={'center'}>
-                        <Text w={['15rem', '15rem', '18rem', '25rem']}>No seu aplicativo do banco, selecione a opção de PIX QRCODE, aponte a camera do celular para o QRCODE e conclua o pagamento.</Text>
-                        <Image mt="2rem" alt='qrcode' src={qrCode.imagemQrcode} width={'12rem'}/>   
-                        <Text mt='2rem'>ou</Text>
-                        <Text mt='1rem'  w={['15rem', '15rem', '18rem', '25rem']}>Selecione a opção PIX Copia e Cola, copie o texto abaixo e conclua o pagamento.</Text>
-                        <Text
-                          background={'#f6eccf'}
-                          p={'1rem'}
-                          mt='2rem'
-                          color='#5d2e27'
-                          align="start"
-                          w={['15rem', '15rem', '18rem', '25rem']}
+                          <Button
+                              mt="2rem"
+                              mb='1rem'
+                              p='2rem'
+                              w={['20rem', '20rem', '20rem', '25rem']}
+                              type="submit"
+                              bg="#f6eccf"
+                              _hover={{ bg: '#5d2e27', color: '#fff' }}
+                              color="#5d2e27"
+                              size="lg"
+                            >
+                              Comprar
+                            </Button>
+                            
+                      </Flex>
+                      : 
+                      qrCode.imagemQrcode == null ? 
+                        <Spinner size={'lg'} /> 
+                      :
+                      <ScaleFade initialScale={0.9} in={isOpen}>
+                        <Flex flexDir={'column'} justify={'center'} align={'center'}>
+                          <Text w={['15rem', '15rem', '18rem', '25rem']}>No seu aplicativo do banco, selecione a opção de PIX QRCODE, aponte a camera do celular para o QRCODE e conclua o pagamento.</Text>
+                          <Image mt="2rem" alt='qrcode' src={qrCode.imagemQrcode} width={'12rem'}/>   
+                          <Text mt='2rem'>ou</Text>
+                          <Text mt='1rem'  w={['15rem', '15rem', '18rem', '25rem']}>Selecione a opção PIX Copia e Cola, copie o texto abaixo e conclua o pagamento.</Text>
+                          <Text
+                            background={'#f6eccf'}
+                            p={'1rem'}
+                            mt='2rem'
+                            color='#5d2e27'
+                            align="start"
+                            w={['15rem', '15rem', '18rem', '25rem']}
+                          >
+                          {qrCode.qrcode}
+                        </Text>
+  
+                        <Button
+                          mt="1rem"
+                          _hover={{ bg: '#5d2e27', color: '#fff' }}
+                          bg="#f6eccf"
+                          color="#5d2e27"
+                          onClick={handleCopyClick}
                         >
-                        {qrCode.qrcode}
-                      </Text>
-
-                      <Button
-                        mt="1rem"
-                        _hover={{ bg: '#5d2e27', color: '#fff' }}
-                        bg="#f6eccf"
-                        color="#5d2e27"
-                        onClick={handleCopyClick}
-                      >
-                        Copiar
-                      </Button>
-                      <Text mt='1rem' w={['15rem', '15rem', '18rem', '25rem']} mb="1rem">Assim que concluir o pagamento, os números selecionados serão reservados e mudarão de cor no nosso sistema.</Text>
-                    </Flex>   
-                  </ScaleFade>
-                  } 
-                  </ScaleFade>
-                }
-              </VStack>
+                          Copiar
+                        </Button>
+                        <Text mt='1rem' w={['15rem', '15rem', '18rem', '25rem']} mb="1rem">Assim que concluir o pagamento, os números selecionados serão reservados e mudarão de cor no nosso sistema.</Text>
+                      </Flex>   
+                    </ScaleFade>
+                    } 
+                    </ScaleFade>
+                  }
+                </VStack>
+                </Flex>
               </Flex>
-              
+              )}
 
-              {/* DESCOMENTE ESSA PARTE QUANDO O SORTEIO ESTIVER AGUARDANDO O RESULTADO
-              <Flex w={'100%'} justify={'center'} align={'center'} h={'70vh'} flexDir={'column'}>
-                <Heading>SORTEIO FINALIZADO!</Heading>
-                <Text>Aguardando resultado da Loteria Federal</Text>
-              </Flex> */}
-
-              {/* DESCOMENTE ESSA PARTE QUANDO EXISTIR UM VENCEDOR
-              <Flex w={'100%'} justify={'center'} align={'center'} h={'70vh'} flexDir={'column'}>
-                <Text>Parabéns!!!</Text>
-                <Heading>Nº XX</Heading>
-                <Heading>VENCEDOR</Heading>
-                
-                <Text>Agradecemos a todos que participaram.</Text>
-              </Flex> */}
-
-            </Flex>
+        
         </>
     )
 }

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Box,  Flex, Grid, Heading, Img, Link, Text, VStack } from '@chakra-ui/react'
+import { Flex, Grid, Heading, Img, Link, Text, VStack } from '@chakra-ui/react'
 import { useEffect,  useState } from 'react'
 import { api } from '@/api';
 
