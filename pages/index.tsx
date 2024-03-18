@@ -1,36 +1,9 @@
 import Head from 'next/head'
 import { Flex, Grid, Heading, Img, Link, Text, VStack } from '@chakra-ui/react'
-import { useEffect,  useState } from 'react'
-import { api } from '@/api';
+import { GetServerSideProps } from 'next';
+import { IProduct } from '@/interfaces/Product';
 
-
-interface Product {
-  id: string;
-  name: string;
-  luckDay: string;
-  imgSrc: string;
-  slug: string;
-  price: string;
-}
-
-
-export default function Home() {
-  const [products, setProducts] = useState<Product[]>([])
-
-
-  const fetchAllData = async() => {
-    try {
-      const response = await api.get('/products')
-      setProducts(response.data)
-    } catch(err) {
-      console.log(err)
-    }
-  }
-
-  useEffect(() => {
-    fetchAllData()
-  } ,[])
-
+export default function Home({ products }: any) {
   return (
     <>
       <Head>
@@ -53,10 +26,10 @@ export default function Home() {
         ]}
         gap="1rem"
         >
-          {products.map(product => (
+          {products.map((product: IProduct) => (
             <Link key={product.id} href={product.slug} _hover={{ textDecoration: "none" }}>
               <Flex cursor={'pointer'} border={'0.5rem solid #f6eccf'} borderRadius={'2rem'} pos={'relative'} w={'18rem'} align={'center'} justify={'center'} h={'18rem'} key={product.id}>
-                <Img borderRadius={'0.5rem'} src={product.imgSrc} opacity={0.8} alt="imagemChocolate"  w={'100%'} h={'100%'} left={0} top={0} pos={'absolute'} />
+                <Img borderRadius={'2rem'} src={product.imgSrc} opacity={0.8} alt="imagemChocolate"  w={'100%'} h={'100%'} left={0} top={0} pos={'absolute'} />
                 <VStack pos={'relative'} w={'100%'} h={'100%'}>                                   
                   <Text p={'0.5rem'} fontWeight={600} color={'#f6eccf'} fontSize={'1.5rem'}>{product.name}</Text>
                 </VStack> 
@@ -67,5 +40,23 @@ export default function Home() {
       </Flex>
     </>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+
+  const baseUrl =
+  process.env.NODE_ENV === 'development'
+    ? process.env.API_LOCALHOST
+    : process.env.API_PRODUCTION;
+
+  const response = await fetch(`${baseUrl}/products`)
+
+  const products = await response.json()
+	
+	return {
+		props: {
+      products
+    },
+	}
 }
 
