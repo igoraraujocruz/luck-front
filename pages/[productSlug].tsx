@@ -11,6 +11,7 @@ import { FormBuy } from "@/components/FormBuy";
 import { QRCode } from "@/components/QRCode";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
+import { AllBuyers } from "@/components/AllBuyers";
 
 interface Props {
   producta: IProduct;
@@ -73,7 +74,10 @@ export default function Product({ producta, productSlug }: Props) {
               <Regulation />
   
               {producta.isActivate === false && (
-                <ProductDesativated />
+                <VStack  w={'100%'} justify={'center'}>
+                  <ProductDesativated />
+                  <AllBuyers product={producta} />
+                </VStack>
               )}
 
               <Flex flexDir={['column','column', 'row']} align={['center', 'center', 'start']} justify={'center'} gap={4} mt={'1rem'} w={'100%'}>
